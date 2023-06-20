@@ -71,6 +71,16 @@ export const validatePrivateKey: Validator = mkSelectingValidator(
       invalidEthPrivateKeyError,
       (val) => typeof val === 'string' && isEthPrivateKey(val)
     ),
+    dfkchain: mkValidator(
+      'privateKey',
+      invalidEthPrivateKeyError,
+      (val) => typeof val === 'string' && isEthPrivateKey(val)
+    ),
+    klaytn: mkValidator(
+      'privateKey',
+      invalidEthPrivateKeyError,
+      (val) => typeof val === 'string' && isEthPrivateKey(val)
+    ),
     harmony: mkValidator(
       'privateKey',
       invalidEthPrivateKeyError,
@@ -131,6 +141,8 @@ export const validateChain: Validator = mkValidator(
     (val === 'algorand' ||
       val === 'ethereum' ||
       val === 'avalanche' ||
+      val === 'dfkchain' ||
+      val === 'klaytn' ||
       val === 'polygon' ||
       val === 'xdc' ||
       val === 'near' ||
