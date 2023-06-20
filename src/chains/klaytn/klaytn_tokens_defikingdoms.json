@@ -1,0 +1,221 @@
+{
+   "tokens": [
+      {
+         "chainId": 8217,
+         "address": "0x30C103f8f5A3A732DFe2dCE1Cc9446f545527b43",
+         "symbol": "JEWEL",
+         "name": "JEWEL",
+         "decimals": 18
+      },
+      {
+         "chainId": 8217,
+         "address": "0x5819b6af194A78511c79C85Ea68D2377a7e9335f",
+         "symbol": "WKLAY",
+         "name": "Wrapped KLAY",
+         "decimals": 18
+      },
+      {
+         "chainId": 8217,
+         "address": "0xd6dAb4CfF47dF175349e6e7eE2BF7c40Bb8C05A3",
+         "symbol": "USDT",
+         "name": "Tether USDT",
+         "decimals": 6
+      },
+      {
+         "chainId": 8217,
+         "address": "0xDCbacF3f7a069922E677912998c8d57423C37dfA",
+         "symbol": "WBTC",
+         "name": "Wrapped BTC",
+         "decimals": 8
+      },
+      {
+         "chainId": 8217,
+         "address": "0xCD6f29dC9Ca217d0973d3D21bF58eDd3CA871a86",
+         "symbol": "WETH",
+         "name": "Wrapped ETH",
+         "decimals": 18
+      },
+      {
+         "chainId": 8217,
+         "address": "0x19Aac5f612f524B754CA7e7c41cbFa2E981A4432",
+         "symbol": "WKLAY",
+         "name": "Wrapped Klay",
+         "decimals": 18
+      },
+      {
+         "chainId": 8217,
+         "address": "0xceE8FAF64bB97a73bb51E115Aa89C17FfA8dD167",
+         "symbol": "oUSDT",
+         "name": "Orbit Bridge Klaytn USD Tether",
+         "decimals": 6
+      },
+      {
+         "chainId": 8217,
+         "address": "0x16D0e1fBD024c600Ca0380A4C5D57Ee7a2eCBf9c",
+         "symbol": "oWBTC",
+         "name": "Orbit Bridge Klaytn Wrapped BTC",
+         "decimals": 8
+      },
+      {
+         "chainId": 8217,
+         "address": "0x34d21b1e550D73cee41151c77F3c73359527a396",
+         "symbol": "oETH",
+         "name": "Orbit Bridge Klaytn Ethereum",
+         "decimals": 18
+      },
+      {
+         "chainId": 8217,
+         "address": "0xCd8fE44A29Db9159dB36f96570d7A4d91986f528",
+         "symbol": "AVAX",
+         "name": "Avalanche",
+         "decimals": 18
+      },
+      {
+         "chainId": 8217,
+         "address": "0xB3F5867E277798b50ba7A71C0b24FDcA03045eDF",
+         "symbol": "JADE",
+         "name": "Jade",
+         "decimals": 18
+      },
+      {
+         "chainId": 8217,
+         "address": "0x8Be0cbA3c8c8F392408364ef21dfCF714A918234",
+         "symbol": "DFKTEARS",
+         "name": "Gaia's Tears",
+         "decimals": 0
+      },
+      {
+         "chainId": 8217,
+         "address": "0x80A42Dc2909C0873294c5E359e8DF49cf21c74E4",
+         "symbol": "DFKLANTERNEYE",
+         "name": "Lantern-Eye",
+         "decimals": 0
+      },
+      {
+         "chainId": 8217,
+         "address": "0xe7a1B580942148451E47b92e95aEB8d31B0acA37",
+         "symbol": "DFKGOLD",
+         "name": "Gold",
+         "decimals": 3
+      },
+      {
+         "chainId": 8217,
+         "address": "0xEDFBe9EEf42FfAf8909EC9Ce0d79850BA0C232FE",
+         "symbol": "DFKDRKWD",
+         "name": "Darkweed",
+         "decimals": 0
+      },
+      {
+         "chainId": 8217,
+         "address": "0xBcdD90034eB73e7Aec2598ea9082d381a285f63b",
+         "symbol": "DFKIRONSCALE",
+         "name": "Ironscale",
+         "decimals": 0
+      },
+      {
+         "chainId": 8217,
+         "address": "0xf2D479DaEdE7F9e270a90615F8b1C52F3C487bC7",
+         "symbol": "DFKRCKRT",
+         "name": "Rockroot",
+         "decimals": 0
+      },
+      {
+         "chainId": 8217,
+         "address": "0xDbd4fA2D2C62C6c60957a126970e412Ed6AC1bD6",
+         "symbol": "DFKBLUESTEM",
+         "name": "Bluestem",
+         "decimals": 0
+      },
+      {
+         "chainId": 8217,
+         "address": "0xc9731BE04F217543E3010cCbf903E858EFde840f",
+         "symbol": "DFKGOLDEGG",
+         "name": "Gold Egg",
+         "decimals": 0
+      },
+      {
+         "chainId": 8217,
+         "address": "0xbb8ac0BB95E433204217b0478B3f6d815EcB2d8C",
+         "symbol": "DFKLMGHTST",
+         "name": "Lesser Might Stone",
+         "decimals": 0
+      },
+      {
+         "chainId": 8217,
+         "address": "0xfC66cF68505F8E95C52C4F7f84936436DBd52e9B",
+         "symbol": "DFKLINSST",
+         "name": "Lesser Insight Stone",
+         "decimals": 0
+      },
+      {
+         "chainId": 8217,
+         "address": "0x75E8D8676d774C9429FbB148b30E304b5542aC3d",
+         "symbol": "DFKAMBRTFY",
+         "name": "Ambertaffy",
+         "decimals": 0
+      },
+      {
+         "chainId": 8217,
+         "address": "0xa61Bac689AD6867a605633520D70C49e1dCce853",
+         "symbol": "DFKSHIMMERSKIN",
+         "name": "Shimmerskin",
+         "decimals": 0
+      },
+      {
+         "chainId": 8217,
+         "address": "0xCd2192521BD8e33559b0CA24f3260fE6A26C28e4",
+         "symbol": "DFKSWFTHSL",
+         "name": "Swift-Thistle",
+         "decimals": 0
+      },
+      {
+         "chainId": 8217,
+         "address": "0xc6030Afa09EDec1fd8e63a1dE10fC00E0146DaF3",
+         "symbol": "DFKSAILFISH",
+         "name": "Sailfish",
+         "decimals": 0
+      },
+      {
+         "chainId": 8217,
+         "address": "0xD69542aBE74413242e387Efb9e55BE6A4863ca10",
+         "symbol": "DFKFROSTDRM",
+         "name": "Frost Drum",
+         "decimals": 0
+      },
+      {
+         "chainId": 8217,
+         "address": "0x18cB286EeCE992f79f601E49acde1D1F5dE32a30",
+         "symbol": "DFKFBLOATER",
+         "name": "Frost Bloater",
+         "decimals": 0
+      },
+      {
+         "chainId": 8217,
+         "address": "0x907a98319AEB249e387246637149f4B2e7D21dB7",
+         "symbol": "DFKSHVAS",
+         "name": "Shvas rune",
+         "decimals": 0
+      },
+      {
+         "chainId": 8217,
+         "address": "0xFceFA4Abcb18a7053393526f75Ad33fac5F25dc9",
+         "symbol": "DFKKNAPROOT",
+         "name": "Knaproot",
+         "decimals": 0
+      },
+      {
+         "chainId": 8217,
+         "address": "0x48d9fC80A47cee2d52DE950898Bc6aBF54223F81",
+         "symbol": "DFKSPCKLTL",
+         "name": "Speckle Tail",
+         "decimals": 0
+      },
+      {
+         "chainId": 8217,
+         "address": "0xE408814828f2b51649473c1a05B861495516B920",
+         "symbol": "DFKMILKWEED",
+         "name": "Milkweed",
+         "decimals": 0
+      }
+   ]
+}

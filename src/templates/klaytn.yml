@@ -1,0 +1,14 @@
+# list the Klaytn networks available to gateway
+networks:
+  mainnet: 
+    chainID: 8217
+    nodeURL: https://klaytn.rpc.defikingdoms.com/
+    tokenListType: 'FILE'
+    tokenListSource: 'src/chains/klaytn/klaytn_tokens_defikingdoms.json'
+    nativeCurrencySymbol: 'KLAY'
+
+network: 'klaytn'
+autoGasPrice: true
+manualGasPrice: 30
+gasPriceRefreshTime: 60
+gasLimitTransaction: 3000000

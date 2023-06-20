@@ -23,7 +23,9 @@ import { logger } from '../../services/logger';
 import { percentRegexp } from '../../services/config-manager-v2';
 // import { Ethereum } from '../../chains/ethereum/ethereum';
 import { ExpectedTrade, Uniswapish } from '../../services/common-interfaces';
+
 import { Harmony } from '../../chains/harmony/harmony';
+
 
 export class Defikingdoms implements Uniswapish {
   private static _instances: { [name: string]: Defikingdoms };

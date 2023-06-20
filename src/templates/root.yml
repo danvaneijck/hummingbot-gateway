@@ -20,6 +20,14 @@ configurations:
     configurationPath: avalanche.yml
     schemaPath: ethereum-schema.json
 
+  $namespace dfkchain:
+    configurationPath: dfkchain.yml
+    schemaPath: dfkchain-schema.json
+
+  $namespace klaytn:
+    configurationPath: klaytn.yml
+    schemaPath: klaytn-schema.json
+
   $namespace dexalot:
     configurationPath: dexalot.yml
     schemaPath: dexalot-schema.json

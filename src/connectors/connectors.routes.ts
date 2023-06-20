@@ -21,6 +21,7 @@ import { ConnectorsResponse } from './connectors.request';
 import { DexalotCLOBConfig } from './dexalot/dexalot.clob.config';
 import { ZigZagConfig } from './zigzag/zigzag.config';
 import { TinymanConfig } from './tinyman/tinyman.config';
+import { DefiKingdomsV2Config } from './defikingdomsv2/defikingdoms.config';
 
 export namespace ConnectorsRoutes {
   export const router = Router();
@@ -86,6 +87,12 @@ export namespace ConnectorsRoutes {
             trading_type: DefikingdomsConfig.config.tradingTypes,
             chain_type: DefikingdomsConfig.config.chainType,
             available_networks: DefikingdomsConfig.config.availableNetworks,
+          },
+          {
+            name: 'defikingdomsv2',
+            trading_type: DefiKingdomsV2Config.config.tradingTypes,
+            chain_type: DefiKingdomsV2Config.config.chainType,
+            available_networks: DefiKingdomsV2Config.config.availableNetworks,
           },
           {
             name: 'defira',

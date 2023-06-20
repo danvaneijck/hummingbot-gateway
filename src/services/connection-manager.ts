@@ -39,6 +39,9 @@ import { DexalotCLOB } from '../connectors/dexalot/dexalot';
 import { Algorand } from '../chains/algorand/algorand';
 import { Cosmos } from '../chains/cosmos/cosmos';
 import { Tinyman } from '../connectors/tinyman/tinyman';
+import { DfkChain } from '../chains/dfkchain/dfkchain';
+import { Klaytn } from '../chains/klaytn/klaytn';
+import { DefiKingdomsV2 } from '../connectors/defikingdomsv2/defikingdoms';
 
 export type ChainUnion =
   | Algorand
@@ -119,6 +122,10 @@ export function getChainInstance(
     connection = Xdc.getInstance(network);
   } else if (chain === 'injective') {
     connection = Injective.getInstance(network);
+  } else if (chain === 'dfkchain') {
+    connection = DfkChain.getInstance(network);
+  } else if (chain === 'klaytn') {
+    connection = Klaytn.getInstance(network);
   } else {
     connection = undefined;
   }
@@ -208,6 +215,10 @@ export async function getConnector<T>(
     connectorInstance = ZigZag.getInstance(network);
   } else if (chain == 'algorand' && connector == 'tinyman') {
     connectorInstance = Tinyman.getInstance(network);
+  } else if (chain == 'klaytn' && connector == 'defikingdomsv2') {
+    connectorInstance = DefiKingdomsV2.getInstance(chain, network);
+  } else if (chain == 'dfkchain' && connector == 'defikingdomsv2') {
+    connectorInstance = DefiKingdomsV2.getInstance(chain, network);
   } else {
     throw new Error('unsupported chain or connector');
   }

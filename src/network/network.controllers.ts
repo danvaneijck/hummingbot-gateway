@@ -10,6 +10,9 @@ import { Ethereum } from '../chains/ethereum/ethereum';
 import { Harmony } from '../chains/harmony/harmony';
 import { Polygon } from '../chains/polygon/polygon';
 import { Injective } from '../chains/injective/injective';
+import { DfkChain } from '../chains/dfkchain/dfkchain';
+import { Klaytn } from '../chains/klaytn/klaytn';
+
 import { Xdc } from '../chains/xdc/xdc';
 import {
   HttpException,
@@ -62,6 +65,16 @@ export async function getStatus(
     const avalancheConnections = Avalanche.getConnectedInstances();
     connections = connections.concat(
       avalancheConnections ? Object.values(avalancheConnections) : []
+    );
+
+    const dfkchainConnections = DfkChain.getConnectedInstances();
+    connections = connections.concat(
+      dfkchainConnections ? Object.values(dfkchainConnections) : []
+    );
+
+    const klaytnConnections = Klaytn.getConnectedInstances();
+    connections = connections.concat(
+      klaytnConnections ? Object.values(klaytnConnections) : []
     );
 
     const harmonyConnections = Harmony.getConnectedInstances();
