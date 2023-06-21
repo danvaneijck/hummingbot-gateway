@@ -13,7 +13,7 @@ import * as transactionOutOfGas from '../ethereum/fixtures/transaction-out-of-ga
 import { DfkChain } from '../../../src/chains/dfkchain/dfkchain';
 let dfkchain: DfkChain;
 
-const address: string = '0xFaA12FD102FE8623C9299c72B03E45107F2772B5';
+const address: string = '0x71Ff6915c31Afe93D2f39AbEB08Ca5034154EFEB';
 
 beforeAll(async () => {
   dfkchain = DfkChain.getInstance('mainnet');
@@ -40,13 +40,11 @@ const patchGetNonce = () => {
 const patchGetTokenBySymbol = () => {
   patch(dfkchain, 'getTokenBySymbol', () => {
     return {
-      chainId: 43114,
-      address: '0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7',
+      chainId: 53935,
+      address: '0xCCb93dABD71c8Dad03Fc4CE5559dC3D89F67a260',
       decimals: 18,
-      name: 'Wrapped AVAX',
-      symbol: 'WAVAX',
-      logoURI:
-        'https://raw.githubusercontent.com/ava-labs/bridge-tokens/main/avalanche-tokens/0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7/logo.png',
+      name: 'Wrapped JEWEL',
+      symbol: 'WJEWL',
     };
   });
 };
@@ -55,7 +53,7 @@ const patchApproveERC20 = () => {
   patch(dfkchain, 'approveERC20', () => {
     return {
       type: 2,
-      chainId: 43114,
+      chainId: 53935,
       nonce: 115,
       maxPriorityFeePerGas: { toString: () => '106000000000' },
       maxFeePerGas: { toString: () => '106000000000' },
@@ -69,7 +67,7 @@ const patchApproveERC20 = () => {
       v: 0,
       r: '0xbeb9aa40028d79b9fdab108fcef5de635457a05f3a254410414c095b02c64643', // noqa: mock
       s: '0x5a1506fa4b7f8b4f3826d8648f27ebaa9c0ee4bd67f569414b8cd8884c073100', // noqa: mock
-      from: '0xFaA12FD102FE8623C9299c72B03E45107F2772B5',
+      from: '0x71Ff6915c31Afe93D2f39AbEB08Ca5034154EFEB',
       confirmations: 0,
     };
   });
@@ -163,10 +161,10 @@ describe('POST /evm/allowances', () => {
   it('should return 200 asking for allowances', async () => {
     patchGetWallet();
     patchGetTokenBySymbol();
-    const spender = '0xFaA12FD102FE8623C9299c72B03E45107F2772B5';
+    const spender = '0x71Ff6915c31Afe93D2f39AbEB08Ca5034154EFEB';
     dfkchain.getSpender = jest.fn().mockReturnValue(spender);
     dfkchain.getContract = jest.fn().mockReturnValue({
-      address: '0xFaA12FD102FE8623C9299c72B03E45107F2772B5',
+      address: '0x71Ff6915c31Afe93D2f39AbEB08Ca5034154EFEB',
     });
     patchGetERC20Allowance();
 
@@ -175,7 +173,7 @@ describe('POST /evm/allowances', () => {
       .send({
         chain: 'dfkchain',
         network: 'mainnet',
-        address: '0xFaA12FD102FE8623C9299c72B03E45107F2772B5',
+        address: '0x71Ff6915c31Afe93D2f39AbEB08Ca5034154EFEB',
         spender: spender,
         tokenSymbols: ['xJEWEL', 'USDC'],
       })
@@ -195,7 +193,7 @@ describe('POST /network/balances', () => {
     patchGetNativeBalance();
     patchGetERC20Balance();
     dfkchain.getContract = jest.fn().mockReturnValue({
-      address: '0xFaA12FD102FE8623C9299c72B03E45107F2772B5',
+      address: '0x71Ff6915c31Afe93D2f39AbEB08Ca5034154EFEB',
     });
 
     await request(gatewayApp)
@@ -203,7 +201,7 @@ describe('POST /network/balances', () => {
       .send({
         chain: 'dfkchain',
         network: 'mainnet',
-        address: '0xFaA12FD102FE8623C9299c72B03E45107F2772B5',
+        address: '0x71Ff6915c31Afe93D2f39AbEB08Ca5034154EFEB',
         tokenSymbols: ['xJEWEL', 'USDC'],
       })
       .set('Accept', 'application/json')

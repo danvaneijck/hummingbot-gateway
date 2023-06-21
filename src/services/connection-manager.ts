@@ -41,7 +41,7 @@ import { Cosmos } from '../chains/cosmos/cosmos';
 import { Tinyman } from '../connectors/tinyman/tinyman';
 import { DfkChain } from '../chains/dfkchain/dfkchain';
 import { Klaytn } from '../chains/klaytn/klaytn';
-import { DefiKingdomsV2 } from '../connectors/defikingdomsv2/defikingdoms';
+import { DefiKingdomsV2 } from '../connectors/defikingdomsv2/defikingdomsv2';
 
 export type ChainUnion =
   | Algorand

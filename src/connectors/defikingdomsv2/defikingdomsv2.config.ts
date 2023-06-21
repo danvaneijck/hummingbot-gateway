@@ -14,19 +14,15 @@ export namespace DefiKingdomsV2Config {
 
   export const config: NetworkConfig = {
     allowedSlippage: ConfigManagerV2.getInstance().get(
-      'defikingdoms.allowedSlippage'
+      'defikingdomsv2.allowedSlippage'
     ),
     gasLimitEstimate: ConfigManagerV2.getInstance().get(
-      'defikingdoms.gasLimitEstimate'
+      'defikingdomsv2.gasLimitEstimate'
     ),
-    ttl: ConfigManagerV2.getInstance().get('defikingdoms.ttl'),
+    ttl: ConfigManagerV2.getInstance().get('defikingdomsv2.ttl'),
     defikingdomsRouterAddress: (chain: string, network: string) =>
       ConfigManagerV2.getInstance().get(
-        'defikingdoms.contractAddresses.' +
-          chain +
-          '.' +
-          network +
-          '.defikingdomsRouterAddress'
+        `defikingdomsv2.contractAddresses.${chain}.${network}.defikingdomsRouterAddress`
       ),
     tradingTypes: ['AMM'],
     chainType: 'EVM',

@@ -1,5 +1,5 @@
 import { UniswapishPriceError } from '../../services/error-handler';
-import { DefiKingdomsV2Config } from './defikingdoms.config';
+import { DefiKingdomsV2Config } from './defikingdomsv2.config';
 import routerAbi from './defikingdoms_router.json';
 
 import { ContractInterface } from '@ethersproject/contracts';
@@ -51,7 +51,7 @@ export class DefiKingdomsV2 implements Uniswapish {
     } else if (chain === 'harmony') {
       this.chain = Harmony.getInstance(network);
     } else {
-      throw new Error('unsupported chain');
+      throw new Error(`unsupported chain: ${chain} network: ${network}`);
     }
     this.chainId = this.chain.chainId;
     this._ttl = config.ttl;
@@ -205,8 +205,8 @@ export class DefiKingdomsV2 implements Uniswapish {
     }
     logger.info(
       `Best trade for ${baseToken.address}-${quoteToken.address}: ` +
-        `${trades[0].executionPrice.toFixed(6)}` +
-        `${baseToken.name}.`
+      `${trades[0].executionPrice.toFixed(6)}` +
+      `${baseToken.name}.`
     );
     const expectedAmount = trades[0].minimumAmountOut(
       this.getSlippagePercentage()
@@ -235,8 +235,8 @@ export class DefiKingdomsV2 implements Uniswapish {
     }
     logger.info(
       `Best trade for ${quoteToken.address}-${baseToken.address}: ` +
-        `${trades[0].executionPrice.invert().toFixed(6)} ` +
-        `${baseToken.name}.`
+      `${trades[0].executionPrice.invert().toFixed(6)} ` +
+      `${baseToken.name}.`
     );
 
     const expectedAmount = trades[0].maximumAmountIn(

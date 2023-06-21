@@ -5,7 +5,7 @@ import { EthereumBase } from '../ethereum/ethereum-base';
 import { getEthereumConfig as getKlaytnConfig } from '../ethereum/ethereum.config';
 import { Provider } from '@ethersproject/abstract-provider';
 
-import { DefikingdomsConfig } from '../../connectors/defikingdoms/defikingdoms.config';
+import { DefiKingdomsV2 } from '../../connectors/defikingdomsv2/defikingdomsv2';
 
 import { Ethereumish } from '../../services/common-interfaces';
 import { ConfigManagerV2 } from '../../services/config-manager-v2';
@@ -79,7 +79,7 @@ export class Klaytn extends EthereumBase implements Ethereumish {
   getSpender(reqSpender: string): string {
     let spender: string;
     if (reqSpender === 'defikingdomsv2') {
-      spender = DefikingdomsConfig.config.routerAddress(this._chain);
+      spender = DefiKingdomsV2.getInstance("klaytn", 'mainnet').router;
     } else {
       spender = reqSpender;
     }

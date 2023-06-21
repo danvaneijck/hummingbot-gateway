@@ -54,6 +54,14 @@ import {
   Fraction as SushiFraction,
 } from '@sushiswap/sdk';
 import {
+  Trade as DfkTrade,
+  Token as DfkToken,
+  CurrencyAmount as DfkCurrencyAmount,
+  TradeType as DfkTradeType,
+  Currency as DfkCurrency,
+  Fraction as DfkFraction,
+} from '@sushiswap/sdk';
+import {
   Token as TokenTraderjoe,
   CurrencyAmount as CurrencyAmountTraderjoe,
   Trade as TradeTraderjoe,
@@ -127,6 +135,7 @@ export type Tokenish =
   | UniswapCoreToken
   | SushiToken
   | TokenDefikingdoms
+  | DfkToken
   | PancakeSwapToken
   | MMFToken
   | VVSToken
@@ -150,6 +159,7 @@ export type UniswapishTrade =
   | UniswapV3Trade<Currency, UniswapCoreToken, TradeType>
   | TradeUniswap
   | TradeDefikingdoms
+  | DfkTrade<DfkToken, DfkToken, DfkTradeType>
   | DefiraTrade<UniswapCoreToken, UniswapCoreToken, TradeType>
   | PancakeSwapTrade
   | MMFTrade
@@ -172,6 +182,7 @@ export type UniswapishAmount =
   | CurrencyAmountTraderjoe
   | SushiCurrencyAmount<SushiCurrency | SushiToken>
   | CurrencyAmountDefikingdoms
+  | DfkCurrencyAmount<DfkCurrency | DfkToken>
   | PancakeSwapCurrencyAmount
   | CurrencyAmountMMF
   | CurrencyAmountVVS
@@ -184,6 +195,7 @@ export type Fractionish =
   | TraderjoeFraction
   | SushiFraction
   | DefikingdomsFraction
+  | DfkFraction
   | PancakeSwapFraction
   | FractionMMF
   | FractionVVS

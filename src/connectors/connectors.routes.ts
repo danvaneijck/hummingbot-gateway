@@ -21,7 +21,7 @@ import { ConnectorsResponse } from './connectors.request';
 import { DexalotCLOBConfig } from './dexalot/dexalot.clob.config';
 import { ZigZagConfig } from './zigzag/zigzag.config';
 import { TinymanConfig } from './tinyman/tinyman.config';
-import { DefiKingdomsV2Config } from './defikingdomsv2/defikingdoms.config';
+import { DefiKingdomsV2Config } from './defikingdomsv2/defikingdomsv2.config';
 
 export namespace ConnectorsRoutes {
   export const router = Router();

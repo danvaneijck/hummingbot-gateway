@@ -8,19 +8,19 @@ let dfkchain: DfkChain;
 const TOKENS = [
   {
     chainId: 11111,
-    address: '0x21cf0eB2E3Ab483a67C900b27dA8F34185991982',
+    address: '0xCCb93dABD71c8Dad03Fc4CE5559dC3D89F67a260',
     decimals: 18,
-    name: 'Wrapped AVAX',
-    symbol: 'WAVAX',
+    name: 'Wrapped JEWEL',
+    symbol: 'WJEWEL',
     logoURI:
       'https://raw.githubusercontent.com/pangolindex/tokens/main/assets/11111/0x21cf0eB2E3Ab483a67C900b27dA8F34185991982/logo.png',
   },
   {
     chainId: 43114,
-    address: '0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7',
+    address: '0xCCb93dABD71c8Dad03Fc4CE5559dC3D89F67a260',
     decimals: 18,
-    name: 'Wrapped AVAX',
-    symbol: 'WAVAX',
+    name: 'Wrapped JEWEL',
+    symbol: 'WJEWEL',
     logoURI:
       'https://raw.githubusercontent.com/pangolindex/tokens/main/assets/0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7/logo.png',
   },
