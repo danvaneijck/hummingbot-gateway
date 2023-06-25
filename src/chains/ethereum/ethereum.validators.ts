@@ -58,7 +58,8 @@ export const validateSpender: Validator = mkValidator(
       val === 'openocean' ||
       val === 'quickswap' ||
       val === 'defikingdoms' ||
-      val === 'defikingdomsv2' ||
+      val === 'dfk_crystalvale' ||
+      val === 'dfk_serendale' ||
       val === 'defira' ||
       val === 'mad_meerkat' ||
       val === 'vvs' ||

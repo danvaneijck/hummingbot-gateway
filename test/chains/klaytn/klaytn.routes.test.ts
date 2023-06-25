@@ -133,7 +133,7 @@ describe('POST /evm/approve', () => {
         chain: 'klaytn',
         network: 'mainnet',
         address,
-        spender: 'defikingdomsv2',
+        spender: 'dfk_serendale',
         token: 'JEWEL',
       })
       .set('Accept', 'application/json')
@@ -151,7 +151,7 @@ describe('POST /evm/approve', () => {
         chain: 'klaytn',
         network: 'mainnet',
         address,
-        spender: 'defikingdomsv2',
+        spender: 'dfk_serendale',
         token: 123,
         nonce: '23',
       })

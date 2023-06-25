@@ -20,12 +20,12 @@
             "^\\w+$": {
               "type": "object",
               "properties": {
-                "defikingdomsRouterAddress": {
+                "routerAddress": {
                   "type": "string"
                 }
               },
               "required": [
-                "defikingdomsRouterAddress"
+                "routerAddress"
               ],
               "additionalProperties": false
             }

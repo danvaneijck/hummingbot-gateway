@@ -26,7 +26,6 @@ import { ExpectedTrade, Uniswapish } from '../../services/common-interfaces';
 
 import { Harmony } from '../../chains/harmony/harmony';
 
-
 export class Defikingdoms implements Uniswapish {
   private static _instances: { [name: string]: Defikingdoms };
   private harmony: Harmony;
@@ -176,8 +175,8 @@ export class Defikingdoms implements Uniswapish {
     }
     logger.info(
       `Best trade for ${baseToken.address}-${quoteToken.address}: ` +
-        `${trades[0].executionPrice.toFixed(6)}` +
-        `${baseToken.name}.`
+      `${trades[0].executionPrice.toFixed(6)}` +
+      `${baseToken.name}.`
     );
     const expectedAmount = trades[0].minimumAmountOut(
       this.getAllowedSlippage(allowedSlippage)
@@ -225,8 +224,8 @@ export class Defikingdoms implements Uniswapish {
     }
     logger.info(
       `Best trade for ${quoteToken.address}-${baseToken.address}: ` +
-        `${trades[0].executionPrice.invert().toFixed(6)} ` +
-        `${baseToken.name}.`
+      `${trades[0].executionPrice.invert().toFixed(6)} ` +
+      `${baseToken.name}.`
     );
 
     const expectedAmount = trades[0].maximumAmountIn(

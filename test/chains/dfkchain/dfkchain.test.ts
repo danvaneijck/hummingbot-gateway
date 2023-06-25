@@ -49,7 +49,6 @@ afterAll(async () => {
 
 describe('verify DefiKingdoms storedTokenList', () => {
   it('Should only return tokens in the chain', async () => {
-    const tokenList = dfkchain.storedTokenList;
-    console.log(tokenList);
+    // const tokenList = dfkchain.storedTokenList;
   });
 });

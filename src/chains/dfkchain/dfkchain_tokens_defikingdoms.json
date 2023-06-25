@@ -37,13 +37,6 @@
       },
       {
          "chainId": 53935,
-         "address": "0x58E63A9bbb2047cd9Ba7E6bB4490C238d271c278",
-         "symbol": "DFKTEARS",
-         "name": "Gaia's Tears",
-         "decimals": 0
-      },
-      {
-         "chainId": 53935,
          "address": "0x3bcb9A3DaB194C6D8D44B424AF383E7Db51C82BD",
          "symbol": "DFKFBLOATER",
          "name": "Frost Bloater",
@@ -173,6 +166,622 @@
          "address": "0xa61Bac689AD6867a605633520D70C49e1dCce853",
          "symbol": "DFKBLUEEGG",
          "name": "Blue Egg",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x576C260513204392F0eC0bc865450872025CB1cA",
+         "symbol": "DFKGOLD",
+         "name": "Gold",
+         "decimals": 3
+      },
+      {
+         "chainId": 53935,
+         "address": "0x72F860bF73ffa3FC42B97BbcF43Ae80280CFcdc3",
+         "symbol": "DFKYELOWEGG",
+         "name": "Yellow Egg",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0xfBDF0E31808d0aa7b9509AA6aBC9754E48C58852",
+         "symbol": "ETH",
+         "name": "Ethereum",
+         "decimals": 18
+      },
+      {
+         "chainId": 53935,
+         "address": "0x11C3b7bADC5359242c34C68C1F0f071bFf49a3D8",
+         "symbol": "HONK",
+         "name": "Honk",
+         "decimals": 18
+      },
+      {
+         "chainId": 53935,
+         "address": "0x5bAC3cAd961B01Ef9510C8e6c5402A2bB1542831",
+         "symbol": "DFKLMGHTCR",
+         "name": "Lesser Might Crystal",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x9d9ef1Bf6A46b8413bf6b1b54F6A7aAb53c6b1b6",
+         "symbol": "DFKLFINCR",
+         "name": "Lesser Finesse Crystal",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x6BCA53314dADdA7f4De30A95413f75a93bfAfecF",
+         "symbol": "DFKLSWFTCR",
+         "name": "Lesser Swiftness Crystal",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x5e4Cf6907CB5fBe2F642E399F6d07E567155d1F8",
+         "symbol": "DFKLVGRCR",
+         "name": "Lesser Vigor Crystal",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0xbd2677c06C9448534A851bdD25dF045872b87cb1",
+         "symbol": "DFKLFRTICR",
+         "name": "Lesser Fortitude Crystal",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0xC989c916F189D2A2BE0322c020942d7c43aEa830",
+         "symbol": "DFKLWITCR",
+         "name": "Lesser Wit Crystal",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0xbb5F97358F60cCBa262883A3Ff0C637393FE3aB8",
+         "symbol": "DFKLINSCR",
+         "name": "Lesser Insight Crystal",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0xE410b2BE2Ce1508E15009118567d02C6d7A7038e",
+         "symbol": "DFKLFRTUCR",
+         "name": "Lesser Fortune Crystal",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0xeEe5b16Cc49e7cef65391Fe7325cea17f787e245",
+         "symbol": "DFKLCHSCR",
+         "name": "Lesser Chaos Crystal",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x234dCf10Db6817185F5A3b430a8CAF2B4a35e9E9",
+         "symbol": "DFKMGHTCR",
+         "name": "Might Crystal",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0xA9A8cc1AC7e7505a69cAca2E068716395CebE562",
+         "symbol": "DFKFINCR",
+         "name": "Finesse Crystal",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x3e664eB15b35783B9D3EF06702044820F08bB45B",
+         "symbol": "DFKSWFTCR",
+         "name": "Swiftness Crystal",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0xcD9201F50e5Be84ECE3D8F603dcd3e9DD5e88ea2",
+         "symbol": "DFKVGRCR",
+         "name": "Vigor Crystal",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0xdbEE8C336B06f2d30a6d2bB3817a3Ae0E34f4900",
+         "symbol": "DFKFRTICR",
+         "name": "Fortitude Crystal",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0xAeb5b59c8B90D4F078046550Cc8F9f08dC127253",
+         "symbol": "DFKWITCR",
+         "name": "Wit Crystal",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x03e56Ded72C3a974295773355EadB38c0A85cF9D",
+         "symbol": "DFKINSCR",
+         "name": "Insight Crystal",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0xe9BfCc80800EB77a1eAF6881825936770aF83Eb6",
+         "symbol": "DFKFRTUCR",
+         "name": "Fortune Crystal",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0xC6b00B4005883C1Ff09fa1351B0f49027bCAB71a",
+         "symbol": "DFKCHSCR",
+         "name": "Chaos Crystal",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x591853e01EcFDcF1Bdc9f093423C197BfBBd1A4f",
+         "symbol": "DFKHLTHPTN",
+         "name": "Health Vial",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x5948dd8Df6afEFE05B033AD8f3ae513a9Cd4F1Dc",
+         "symbol": "DFKFHLTHPTN",
+         "name": "Full Health Potion",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x240da5314B05E84392e868aC8f2b80ad6becadd4",
+         "symbol": "DFKMNPTN",
+         "name": "Mana Vial",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0xf17FD21bDF6713a1Dfed668b97835b21e32651e8",
+         "symbol": "DFKFMNPTN",
+         "name": "Full Mana Potion",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x449eB718e351a86718A090A1a8Db3FD561306d9b",
+         "symbol": "DFKANTPSN",
+         "name": "Anti-Poison Potion",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x5986045e7c221c8AD40A736B6434D82E29687aeB",
+         "symbol": "DFKANTBLND",
+         "name": "Anti-Blind Potion",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0xFADCb72aAE2713975a890b59FF47231D1A552De3",
+         "symbol": "DFKMGCRSPTN",
+         "name": "Magic Resistance Potion",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x2dfFf745d2c7ddCAD4E97b80DF33705B1a95A172",
+         "symbol": "DFKTFNSPTN",
+         "name": "Toughness Potion",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x84246Ce3988742D46fC00d9b8b2AFb5CDBDaE660",
+         "symbol": "DFKSWFTPTN",
+         "name": "Swiftness Potion",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x242078edFDca25ef2A497C8D9f256Fd641472E5F",
+         "symbol": "DFKSTMNPTN",
+         "name": "Stamina Vial",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0xf345b884eA45aEcb3E46CeEaEDB9CE993Ba3615a",
+         "symbol": "DFKLMGHTST",
+         "name": "Lesser Might Stone",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0xF1D53fa23C562246B9d8EC591eEa12Ec0288a888",
+         "symbol": "DFKLFINST",
+         "name": "Lesser Finesse Stone",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0xd37aCbAC3C25a543B30aa16208637cfa6EB97eDd",
+         "symbol": "DFKLSWFTST",
+         "name": "Lesser Swiftness Stone",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x63891e0fcfEe0cEB12dE5fb96F43ADf9DbEC20a3",
+         "symbol": "DFKLVGRST",
+         "name": "Lesser Vigor Stone",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0xf599Ae2c925D3287a7fF64DC1b55C7Ea6EE3AA8f",
+         "symbol": "DFKLFRTIST",
+         "name": "Lesser Fortitude Stone",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0xFC943eBd19112D6c6098412238E4E8319641B3d8",
+         "symbol": "DFKLWITST",
+         "name": "Lesser Wit Stone",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x3D112747ff2463802Afa240B62ade8F1cc4a5c7d",
+         "symbol": "DFKLINSST",
+         "name": "Lesser Insight Stone",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x934e3e2a433F37cC2D02855A43fD7Ed475EA7451",
+         "symbol": "DFKLFRTUST",
+         "name": "Lesser Fortune Stone",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x7643ADB5AaF129A424390CB055d6e23231fFd690",
+         "symbol": "DFKLCHSST",
+         "name": "Lesser Chaos Stone",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x268CC8248FFB72Cd5F3e73A9a20Fa2FF40EfbA61",
+         "symbol": "DFKBLOATER",
+         "name": "Bloater",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0xA2cef1763e59198025259d76Ce8F9E60d27B17B5",
+         "symbol": "DFKMILKWEED",
+         "name": "Milkweed",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x3E022D84D397F18743a90155934aBAC421D5FA4C",
+         "symbol": "DFKSPIDRFRT",
+         "name": "Spiderfruit",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x0776b936344DE7bd58A4738306a6c76835ce5D3F",
+         "symbol": "DFKBLUESTEM",
+         "name": "Bluestem",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0xf2D479DaEdE7F9e270a90615F8b1C52F3C487bC7",
+         "symbol": "DFKGOLDEGG",
+         "name": "Gold Egg",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x8D2bC53106063A37bb3DDFCa8CfC1D262a9BDCeB",
+         "symbol": "DFKGREENEGG",
+         "name": "Green Egg",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x0096ffda7A8f8E00e9F8Bbd1cF082c14FA9d642e",
+         "symbol": "DFKGLDVN",
+         "name": "Goldvein",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x137995beEEec688296B0118131C1052546475fF3",
+         "symbol": "DFKRGWD",
+         "name": "Ragweed",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x97b25DE9F61BBBA2aD51F1b706D4D7C04257f33A",
+         "symbol": "DFKSWFTHSL",
+         "name": "Swift-Thistle",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x7f46E45f6e0361e7B9304f338404DA85CB94E33D",
+         "symbol": "DFKSAILFISH",
+         "name": "Sailfish",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x68eE50dD7F1573423EE0Ed9c66Fc1A696f937e81",
+         "symbol": "DFKREDGILL",
+         "name": "Redgill",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x473A41e71618dD0709Ba56518256793371427d79",
+         "symbol": "DFKRDLF",
+         "name": "Redleaf",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0xA7CFd21223151700FB82684Cd9c693596267375D",
+         "symbol": "DFKSILVERFIN",
+         "name": "Silverfin",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x7516EB8B8Edfa420f540a162335eACF3ea05a247",
+         "symbol": "BTC.b",
+         "name": "Bitcoin",
+         "decimals": 8
+      },
+      {
+         "chainId": 53935,
+         "address": "0x97855Ba65aa7ed2F65Ed832a776537268158B78a",
+         "symbol": "KLAY",
+         "name": "Klaytn",
+         "decimals": 18
+      },
+      {
+         "chainId": 53935,
+         "address": "0x2Df041186C844F8a2e2b63F16145Bc6Ff7d23E25",
+         "symbol": "FTM",
+         "name": "Fantom",
+         "decimals": 18
+      },
+      {
+         "chainId": 53935,
+         "address": "0xD17a41Cd199edF1093A9Be4404EaDe52Ec19698e",
+         "symbol": "MATIC",
+         "name": "Matic",
+         "decimals": 18
+      },
+      {
+         "chainId": 53935,
+         "address": "0x3A28E0D4eCF7558e1ba7357070032C5A6105B0C2",
+         "symbol": "DFKGATONECR",
+         "name": "Greater Atonement Crystal",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x1ED1a6Ed588945C59227f7a0c622Ad564229d3d6",
+         "symbol": "DFKCHSST",
+         "name": "Chaos Stone",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0xd647D8b52981eDE13ac6a5B7Ad04e212Ac38fdFb",
+         "symbol": "DFKFRTUST",
+         "name": "Fortune Stone",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x74CFf096C9B027104fb1a0C2E0e265D123eA47De",
+         "symbol": "DFKINSST",
+         "name": "Insight Stone",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x37bAa710391c1D6e22396E4B7F78477F0fF2fFA7",
+         "symbol": "DFKMGHTST",
+         "name": " Might Stone",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0xA71a120931526fC98f1AcC9f769b6b0d690fB8f0",
+         "symbol": "DFKVGRST",
+         "name": "Vigor Stone",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0xb0155Fdb7B6972717C4774Fa2AEAEe9D6c0040b9",
+         "symbol": "DFKGCHSCR",
+         "name": "Greater Chaos Crystal",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0xdA16b191D1431746b6661D428A223b72c178765A",
+         "symbol": "DFKGFINCR",
+         "name": "Greater Finesse Crystal",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x3e1c80c3B916C93748Ae642c885d4BFb5D6a6BFe",
+         "symbol": "DFKGFRTICR",
+         "name": "Greater Fortitude Crystal",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0xB3F5867E277798b50ba7A71C0b24FDcA03045eDF",
+         "symbol": "DFKGINSCR",
+         "name": "Greater Insight Crystal",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x438A4e0673b7084D6b2379a362627789D845399c",
+         "symbol": "DFKGMGHTCR",
+         "name": "Greater Might Crystal",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x1459c662F516D63216491DC34F7d9d35b00dF25A",
+         "symbol": "DFKGSWFTCR",
+         "name": "Greater Swiftness Crystal",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x8780c4aa8bd0D15493D63C884bd9D427199Cf2cf",
+         "symbol": "DFKGVGRCR",
+         "name": "Greater Vigor Crystal",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x9d1f44b0EC7BB80656FC8Fcd65152513f29a606D",
+         "symbol": "DFKGWITCR",
+         "name": "Greater Wit Crystal",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0xEd4Bf3008afE47FE01CcC7a6648a24E326667eee",
+         "symbol": "DFKGCHSST",
+         "name": "Greater Chaos Stone",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0xF35D4f749C6ADCd4AEfE1720C5890cD38129d128",
+         "symbol": "DFKGFINST",
+         "name": "Greater Finesse Stone",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0xc2eF7E4f659272ca2DaE9d3df05680783b299Cd0",
+         "symbol": "DFKGFRTIST",
+         "name": "Greater Fortitude Stone",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x64C7D12D85050F5F0DcD075f038E5D616f30a404",
+         "symbol": "DFKGFRTUCR",
+         "name": "Greater Fortune Crystal",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x8FfF0f5A660b4D38441DDF6127bca42D7a2755a9",
+         "symbol": "DFKGFRTUST",
+         "name": "Greater Fortune Stone",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0xA0851F6368AfA693a6654e9fdaf76CB6F160B837",
+         "symbol": "DFKGMGHTST",
+         "name": "Greater Might Stone",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x0A5985574369EDE9Bd871fbdad61613D4C11Dac4",
+         "symbol": "DFKGVGRST",
+         "name": "Greater Vigor Stone",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0xa1BD7683fA348e256a2de8a9dDB55E5ea01eB048",
+         "symbol": "DFKGWITST",
+         "name": "Greater Wit Stone",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0xe2C357ECB698C5ee97c49CCCfA8117c4b943C7B9",
+         "symbol": "DFKFINST",
+         "name": "Finesse Stone",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x05305c97e9A2FDC0F5Ea23824c1348DEeD9Aff04",
+         "symbol": "DFKFRTIST",
+         "name": "Fortitude Stone",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x4F95D51fB8eF93704aF8C39A080c794cdA08f853",
+         "symbol": "DFKSWFTST",
+         "name": "Swiftness Stone",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x3971212Ec22147EE8808cB84F743DD852Be92f9C",
+         "symbol": "DFKWITST",
+         "name": "Wit Stone",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x3198f51A1c8cFC5f1FeaD58feaa19E6dFc8e9737",
+         "symbol": "DFKGINSST",
+         "name": "Greater Insight Stone",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x40D2c135a3E5a6f6546626795DEc67f818f0352a",
+         "symbol": "DFKGSWFTST",
+         "name": "Greater Swiftness Stone",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0xAcDa84fAb3d3cdB38078b04901a26c103C37E7F4",
+         "symbol": "DFKREGTRT",
+         "name": "Regular Pet Food",
+         "decimals": 0
+      },
+      {
+         "chainId": 53935,
+         "address": "0x8Df3fFa5a677ba9737CE8Afcb8dd15Bd74085adD",
+         "symbol": "DFKPRMTRT",
+         "name": "Premium Pet Food",
          "decimals": 0
       }
    ]

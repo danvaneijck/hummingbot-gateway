@@ -19,7 +19,7 @@ describe('validateSpender', () => {
   it("valid when req.spender is a 'uniswap'", () => {
     expect(
       validateSpender({
-        spender: 'defikingdomsv2',
+        spender: 'dfk_crystalvale',
       })
     ).toEqual([]);
   });

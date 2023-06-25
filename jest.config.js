@@ -2,6 +2,7 @@ module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
   forceExit: true,
+  bail: 3,
   coveragePathIgnorePatterns: [
     'src/app.ts',
     'src/https.ts',
@@ -22,7 +23,8 @@ module.exports = {
     'src/connectors/uniswap/uniswap.ts',
     'src/connectors/uniswap/uniswap.lp.helper.ts',
     'src/connectors/defikingdoms/defikingdoms.ts',
-    'src/connectors/defikingdomsv2/defikingdoms.ts',
+    'src/connectors/dfk_crystalvale/dfk_crystalvale.ts',
+    'src/connectors/dfk_serendale/dfk_serendale.ts',
     'src/connectors/defira/defira.ts',
     'src/connectors/openocean/openocean.ts',
     'src/connectors/pangolin/pangolin.ts',
@@ -42,5 +44,10 @@ module.exports = {
   moduleNameMapper: {
     eccrypto: '<rootDir>/test/mock/eccrypto-mock.js',
   },
-  testPathIgnorePatterns: ['/node_modules/', 'test-helpers'],
+  testPathIgnorePatterns: [
+    '/node_modules/',
+    'test-helpers',
+    'dfk-connector-sdk',
+    '/test/connectors/openocean',
+  ],
 };

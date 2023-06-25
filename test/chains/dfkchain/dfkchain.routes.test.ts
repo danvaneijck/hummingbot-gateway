@@ -131,7 +131,7 @@ describe('POST /evm/approve', () => {
         chain: 'dfkchain',
         network: 'mainnet',
         address,
-        spender: 'defikingdomsv2',
+        spender: 'dfk_crystalvale',
         token: 'WJEWEL',
       })
       .set('Accept', 'application/json')
@@ -149,7 +149,7 @@ describe('POST /evm/approve', () => {
         chain: 'dfkchain',
         network: 'mainnet',
         address,
-        spender: 'defikingdomsv2',
+        spender: 'dfk_crystalvale',
         token: 123,
         nonce: '23',
       })

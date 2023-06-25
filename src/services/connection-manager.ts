@@ -15,7 +15,6 @@ import { Uniswap } from '../connectors/uniswap/uniswap';
 import { UniswapLP } from '../connectors/uniswap/uniswap.lp';
 import { VVSConnector } from '../connectors/vvs/vvs';
 import { InjectiveCLOB } from '../connectors/injective/injective';
-import { InjectiveClobPerp } from '../connectors/injective_perpetual/injective.perp';
 import { Injective } from '../chains/injective/injective';
 import { ZigZag } from '../connectors/zigzag/zigzag';
 import {
@@ -41,7 +40,8 @@ import { Cosmos } from '../chains/cosmos/cosmos';
 import { Tinyman } from '../connectors/tinyman/tinyman';
 import { DfkChain } from '../chains/dfkchain/dfkchain';
 import { Klaytn } from '../chains/klaytn/klaytn';
-import { DefiKingdomsV2 } from '../connectors/defikingdomsv2/defikingdomsv2';
+import { DfkCrystalvale } from '../connectors/dfk_crystalvale/dfk_crystalvale';
+import { DfkSerendale } from '../connectors/dfk_serendale/dfk_serendale';
 
 export type ChainUnion =
   | Algorand
@@ -140,7 +140,7 @@ export type ConnectorUnion =
   | RefAMMish
   | CLOBish
   | ZigZag
-  | InjectiveClobPerp
+  // | InjectiveClobPerp
   | Tinyman;
 
 export type Connector<T> = T extends Uniswapish
@@ -155,9 +155,9 @@ export type Connector<T> = T extends Uniswapish
   ? CLOBish
   : T extends ZigZag
   ? ZigZag
-  : T extends InjectiveClobPerp
-  ? InjectiveClobPerp
-  : T extends Tinyman
+  : // : T extends InjectiveClobPerp
+  // ? InjectiveClobPerp
+  T extends Tinyman
   ? Tinyman
   : never;
 
@@ -203,9 +203,11 @@ export async function getConnector<T>(
     connectorInstance = PancakeSwap.getInstance(chain, network);
   } else if (connector === 'sushiswap') {
     connectorInstance = Sushiswap.getInstance(chain, network);
-  } else if (chain === 'injective' && connector === 'injective_perpetual') {
-    connectorInstance = InjectiveClobPerp.getInstance(chain, network);
-  } else if (chain === 'xdc' && connector === 'xsswap') {
+  }
+  // else if (chain === 'injective' && connector === 'injective_perpetual') {
+  //   connectorInstance = InjectiveClobPerp.getInstance(chain, network);
+  // }
+  else if (chain === 'xdc' && connector === 'xsswap') {
     connectorInstance = Xsswap.getInstance(chain, network);
   } else if (chain === 'injective' && connector === 'injective') {
     connectorInstance = InjectiveCLOB.getInstance(chain, network);
@@ -215,10 +217,10 @@ export async function getConnector<T>(
     connectorInstance = ZigZag.getInstance(network);
   } else if (chain == 'algorand' && connector == 'tinyman') {
     connectorInstance = Tinyman.getInstance(network);
-  } else if (chain == 'klaytn' && connector == 'defikingdomsv2') {
-    connectorInstance = DefiKingdomsV2.getInstance(chain, network);
-  } else if (chain == 'dfkchain' && connector == 'defikingdomsv2') {
-    connectorInstance = DefiKingdomsV2.getInstance(chain, network);
+  } else if (chain == 'klaytn' && connector == 'dfk_serendale') {
+    connectorInstance = DfkSerendale.getInstance(chain, network);
+  } else if (chain == 'dfkchain' && connector == 'dfk_crystalvale') {
+    connectorInstance = DfkCrystalvale.getInstance(chain, network);
   } else {
     throw new Error('unsupported chain or connector');
   }

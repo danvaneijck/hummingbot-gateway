@@ -1,25 +1,21 @@
 import { UniswapishPriceError } from '../../services/error-handler';
-import { DefiKingdomsV2Config } from './defikingdomsv2.config';
+import { DfkCrystalvaleConfig } from './dfk_crystalvale.config';
 import routerAbi from './defikingdoms_router.json';
-
 import { ContractInterface } from '@ethersproject/contracts';
+import { isFractionString } from '../../services/validators';
 
 import {
-  Percent,
-  Router,
-  Token,
-  CurrencyAmount,
-  Trade,
-  Pair,
+  Router as dfkchainRouter,
+  Pair as dfkchainPair,
   SwapParameters,
-  TradeType,
-} from '@sushiswap/sdk';
-import IUniswapV2Pair from '@uniswap/v2-core/build/IUniswapV2Pair.json';
-import { ExpectedTrade, Uniswapish } from '../../services/common-interfaces';
+  Trade as dfkchainTrade,
+  Fetcher as dfkchainFetcher,
+} from '../../../dfk-connector-sdk/dfkchain-sdk/dist';
 
+import { Percent, Token, CurrencyAmount, TradeType } from '@uniswap/sdk-core';
+
+import { ExpectedTrade, Uniswapish } from '../../services/common-interfaces';
 import { DfkChain } from '../../chains/dfkchain/dfkchain';
-import { Harmony } from '../../chains/harmony/harmony';
-import { Klaytn } from '../../chains/klaytn/klaytn';
 
 import {
   BigNumber,
@@ -31,9 +27,10 @@ import {
 import { percentRegexp } from '../../services/config-manager-v2';
 import { logger } from '../../services/logger';
 
-export class DefiKingdomsV2 implements Uniswapish {
-  private static _instances: { [name: string]: DefiKingdomsV2 };
-  private chain: Harmony | Klaytn | DfkChain;
+export class DfkCrystalvale implements Uniswapish {
+  private static _instances: { [name: string]: DfkCrystalvale };
+  private chain: DfkChain;
+
   private _router: string;
   private _routerAbi: ContractInterface;
   private _gasLimitEstimate: number;
@@ -42,36 +39,36 @@ export class DefiKingdomsV2 implements Uniswapish {
   private tokenList: Record<string, Token> = {};
   private _ready: boolean = false;
 
+  private _factory: string;
+  private _initCodeHash: string;
+
   private constructor(chain: string, network: string) {
-    const config = DefiKingdomsV2Config.config;
-    if (chain === 'klaytn') {
-      this.chain = Klaytn.getInstance(network);
-    } else if (chain === 'dfkchain') {
-      this.chain = DfkChain.getInstance(network);
-    } else if (chain === 'harmony') {
-      this.chain = Harmony.getInstance(network);
-    } else {
-      throw new Error(`unsupported chain: ${chain} network: ${network}`);
-    }
+    const config = DfkCrystalvaleConfig.config;
+
+    this.chain = DfkChain.getInstance(network);
+    this._factory = '0x794C07912474351b3134E6D6B3B7b3b4A07cbAAa';
+    this._initCodeHash =
+      '0x4abbeda7e0705baf5222faead952156d4eb4113795d3dd837895a00ff89f5717';
+
     this.chainId = this.chain.chainId;
     this._ttl = config.ttl;
     this._routerAbi = routerAbi;
     this._gasLimitEstimate = config.gasLimitEstimate;
-    this._router = config.defikingdomsRouterAddress(chain, network);
+    this._router = config.routerAddress(chain, network);
   }
 
-  public static getInstance(chain: string, network: string): DefiKingdomsV2 {
-    if (DefiKingdomsV2._instances === undefined) {
-      DefiKingdomsV2._instances = {};
+  public static getInstance(chain: string, network: string): DfkCrystalvale {
+    if (DfkCrystalvale._instances === undefined) {
+      DfkCrystalvale._instances = {};
     }
-    if (!(chain + network in DefiKingdomsV2._instances)) {
-      DefiKingdomsV2._instances[chain + network] = new DefiKingdomsV2(
+    if (!(chain + network in DfkCrystalvale._instances)) {
+      DfkCrystalvale._instances[chain + network] = new DfkCrystalvale(
         chain,
         network
       );
     }
 
-    return DefiKingdomsV2._instances[chain + network];
+    return DfkCrystalvale._instances[chain + network];
   }
 
   /**
@@ -83,7 +80,6 @@ export class DefiKingdomsV2 implements Uniswapish {
   public getTokenByAddress(address: string): Token {
     return this.tokenList[address];
   }
-
   public async init() {
     if (!this.chain.ready()) {
       await this.chain.init();
@@ -133,40 +129,23 @@ export class DefiKingdomsV2 implements Uniswapish {
   }
 
   /**
-   * Gets the allowed slippage percent from configuration.
+   * Gets the allowed slippage percent from the optional parameter or the value
+   * in the configuration.
+   *
+   * @param allowedSlippageStr (Optional) should be of the form '1/10'.
    */
-  getSlippagePercentage(): Percent {
-    const allowedSlippage = DefiKingdomsV2Config.config.allowedSlippage;
+  public getAllowedSlippage(allowedSlippageStr?: string): Percent {
+    if (allowedSlippageStr != null && isFractionString(allowedSlippageStr)) {
+      const fractionSplit = allowedSlippageStr.split('/');
+      return new Percent(fractionSplit[0], fractionSplit[1]);
+    }
+
+    const allowedSlippage = DfkCrystalvaleConfig.config.allowedSlippage;
     const nd = allowedSlippage.match(percentRegexp);
     if (nd) return new Percent(nd[1], nd[2]);
     throw new Error(
       'Encountered a malformed percent string in the config for ALLOWED_SLIPPAGE.'
     );
-  }
-
-  /**
-   * Fetches information about a pair and constructs a pair from the given two tokens.
-   * This is to replace the Fetcher Class
-   * @param baseToken  first token
-   * @param quoteToken second token
-   */
-
-  async fetchData(baseToken: Token, quoteToken: Token): Promise<Pair> {
-    const pairAddress = Pair.getAddress(baseToken, quoteToken);
-    const contract = new Contract(
-      pairAddress,
-      IUniswapV2Pair.abi,
-      this.chain.provider
-    );
-    const [reserves0, reserves1] = await contract.getReserves();
-    const balances = baseToken.sortsBefore(quoteToken)
-      ? [reserves0, reserves1]
-      : [reserves1, reserves0];
-    const pair = new Pair(
-      CurrencyAmount.fromRawAmount(baseToken, balances[0]),
-      CurrencyAmount.fromRawAmount(quoteToken, balances[1])
-    );
-    return pair;
   }
 
   /**
@@ -179,28 +158,29 @@ export class DefiKingdomsV2 implements Uniswapish {
    * @param quoteToken Output from the transaction
    * @param amount Amount of `baseToken` to put into the transaction
    */
-
   async estimateSellTrade(
     baseToken: Token,
     quoteToken: Token,
-    amount: BigNumber
+    amount: BigNumber,
+    allowedSlippage?: string
   ): Promise<ExpectedTrade> {
-    const nativeTokenAmount: CurrencyAmount<Token> =
-      CurrencyAmount.fromRawAmount(baseToken, amount.toString());
+    const baseTokenAmount = CurrencyAmount.fromRawAmount(
+      baseToken,
+      amount.toString()
+    );
 
     logger.info(
       `Fetching pair data for ${baseToken.address}-${quoteToken.address}.`
     );
 
-    const pair: Pair = await this.fetchData(baseToken, quoteToken);
-
-    const trades: Trade<Token, Token, TradeType.EXACT_INPUT>[] =
-      Trade.bestTradeExactIn([pair], nativeTokenAmount, quoteToken, {
+    const pair: dfkchainPair = await this.fetchPairData(quoteToken, baseToken);
+    const trades: dfkchainTrade<Token, Token, TradeType.EXACT_INPUT>[] =
+      dfkchainTrade.bestTradeExactIn([pair], baseTokenAmount, quoteToken, {
         maxHops: 1,
       });
     if (!trades || trades.length === 0) {
       throw new UniswapishPriceError(
-        `priceSwapIn: no trade pair found for ${baseToken} to ${quoteToken}.`
+        `priceSwapIn: no trade pair found for ${baseToken.address} to ${quoteToken.address}.`
       );
     }
     logger.info(
@@ -209,23 +189,37 @@ export class DefiKingdomsV2 implements Uniswapish {
       `${baseToken.name}.`
     );
     const expectedAmount = trades[0].minimumAmountOut(
-      this.getSlippagePercentage()
+      this.getAllowedSlippage(allowedSlippage)
     );
-
     return { trade: trades[0], expectedAmount };
   }
+
+  /**
+   * Given the amount of `baseToken` desired to acquire from a transaction,
+   * calculate the amount of `quoteToken` needed for the transaction.
+   *
+   * This is typically used for calculating token buy prices.
+   *
+   * @param quoteToken Token input for the transaction
+   * @param baseToken Token output from the transaction
+   * @param amount Amount of `baseToken` desired from the transaction
+   */
   async estimateBuyTrade(
     quoteToken: Token,
     baseToken: Token,
-    amount: BigNumber
+    amount: BigNumber,
+    allowedSlippage?: string
   ): Promise<ExpectedTrade> {
-    const nativeTokenAmount: CurrencyAmount<Token> =
-      CurrencyAmount.fromRawAmount(baseToken, amount.toString());
-
-    const pair: Pair = await this.fetchData(quoteToken, baseToken);
-
-    const trades: Trade<Token, Token, TradeType.EXACT_OUTPUT>[] =
-      Trade.bestTradeExactOut([pair], quoteToken, nativeTokenAmount, {
+    const baseTokenAmount = CurrencyAmount.fromRawAmount(
+      baseToken,
+      amount.toString()
+    );
+    logger.info(
+      `Fetching pair data for ${quoteToken.address}-${baseToken.address}.`
+    );
+    const pair: dfkchainPair = await this.fetchPairData(quoteToken, baseToken);
+    const trades: dfkchainTrade<Token, Token, TradeType.EXACT_OUTPUT>[] =
+      dfkchainTrade.bestTradeExactOut([pair], quoteToken, baseTokenAmount, {
         maxHops: 1,
       });
     if (!trades || trades.length === 0) {
@@ -240,69 +234,69 @@ export class DefiKingdomsV2 implements Uniswapish {
     );
 
     const expectedAmount = trades[0].maximumAmountIn(
-      this.getSlippagePercentage()
+      this.getAllowedSlippage(allowedSlippage)
     );
     return { trade: trades[0], expectedAmount };
   }
 
   /**
-   * Given a wallet and a Uniswap trade, try to execute it on blockchain.
+   * Given a wallet and a defira trade, try to execute it on blockchain.
    *
    * @param wallet Wallet
    * @param trade Expected trade
    * @param gasPrice Base gas price, for pre-EIP1559 transactions
-   * @param defikingdomsRouter Router smart contract address
+   * @param dfkRouter Router smart contract address
    * @param ttl How long the swap is valid before expiry, in seconds
    * @param abi Router contract ABI
    * @param gasLimit Gas limit
    * @param nonce (Optional) EVM transaction nonce
-   * @param maxFeePerGas (Optional) Maximum total fee per gas you want to pay
-   * @param maxPriorityFeePerGas (Optional) Maximum tip per gas you want to pay
    */
-
   async executeTrade(
     wallet: Wallet,
-    trade: Trade<Token, Token, TradeType.EXACT_INPUT | TradeType.EXACT_OUTPUT>,
+    trade: dfkchainTrade<Token, Token, TradeType>,
     gasPrice: number,
-    defikingdomsRouter: string,
+    dfkRouter: string,
     ttl: number,
     abi: ContractInterface,
     gasLimit: number,
     nonce?: number,
-    maxFeePerGas?: BigNumber,
-    maxPriorityFeePerGas?: BigNumber
+    _1?: BigNumber,
+    _2?: BigNumber,
+    allowedSlippage?: string
   ): Promise<Transaction> {
-    const result: SwapParameters = Router.swapCallParameters(trade, {
+    const result: SwapParameters = dfkchainRouter.swapCallParameters(trade, {
       ttl,
       recipient: wallet.address,
-      allowedSlippage: this.getSlippagePercentage(),
+      allowedSlippage: this.getAllowedSlippage(allowedSlippage),
     });
-    const contract: Contract = new Contract(defikingdomsRouter, abi, wallet);
+
+    const contract: Contract = new Contract(dfkRouter, abi, wallet);
     return this.chain.nonceManager.provideNonce(
       nonce,
       wallet.address,
       async (nextNonce) => {
-        let tx: ContractTransaction;
-        if (maxFeePerGas !== undefined || maxPriorityFeePerGas !== undefined) {
-          tx = await contract[result.methodName](...result.args, {
-            gasLimit: gasLimit.toFixed(0),
-            value: result.value,
-            nonce: nextNonce,
-            maxFeePerGas,
-            maxPriorityFeePerGas,
-          });
-        } else {
-          tx = await contract[result.methodName](...result.args, {
+        const tx: ContractTransaction = await contract[result.methodName](
+          ...result.args,
+          {
             gasPrice: (gasPrice * 1e9).toFixed(0),
             gasLimit: gasLimit.toFixed(0),
             value: result.value,
             nonce: nextNonce,
-          });
-        }
+          }
+        );
 
         logger.info(JSON.stringify(tx));
         return tx;
       }
+    );
+  }
+
+  async fetchPairData(tokenA: Token, tokenB: Token): Promise<dfkchainPair> {
+    return await dfkchainFetcher.fetchPairData(
+      tokenA,
+      tokenB,
+      this._factory,
+      this._initCodeHash
     );
   }
 }

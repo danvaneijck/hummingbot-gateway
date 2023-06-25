@@ -22,7 +22,7 @@ export const validateSpender: Validator = mkValidator(
   invalidSpenderError,
 
   (val) =>
-    typeof val === 'string' && (val === 'defikingdomsv2' || isAddress(val))
+    typeof val === 'string' && (val === 'dfk_serendale' || isAddress(val))
 );
 
 export const validateAvalancheApproveRequest: RequestValidator =

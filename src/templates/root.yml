@@ -84,9 +84,13 @@ configurations:
     configurationPath: defikingdoms.yml
     schemaPath: defikingdoms-schema.json
 
-  $namespace defikingdomsv2:
-    configurationPath: defikingdomsv2.yml
-    schemaPath: defikingdomsv2-schema.json
+  $namespace dfk_crystalvale:
+    configurationPath: dfk_crystalvale.yml
+    schemaPath: dfk_crystalvale-schema.json
+
+  $namespace dfk_serendale:
+    configurationPath: dfk_serendale.yml
+    schemaPath: dfk_serendale-schema.json
 
   $namespace cosmos:
     configurationPath: cosmos.yml

@@ -5,7 +5,7 @@ import { EthereumBase } from '../ethereum/ethereum-base';
 import { getEthereumConfig as getKlaytnConfig } from '../ethereum/ethereum.config';
 import { Provider } from '@ethersproject/abstract-provider';
 
-import { DefiKingdomsV2 } from '../../connectors/defikingdomsv2/defikingdomsv2';
+import { DfkCrystalvale } from '../../connectors/dfk_crystalvale/dfk_crystalvale';
 
 import { Ethereumish } from '../../services/common-interfaces';
 import { ConfigManagerV2 } from '../../services/config-manager-v2';
@@ -78,8 +78,8 @@ export class Klaytn extends EthereumBase implements Ethereumish {
 
   getSpender(reqSpender: string): string {
     let spender: string;
-    if (reqSpender === 'defikingdomsv2') {
-      spender = DefiKingdomsV2.getInstance("klaytn", 'mainnet').router;
+    if (reqSpender === 'dfk_serendale') {
+      spender = DfkCrystalvale.getInstance("klaytn", 'mainnet').router;
     } else {
       spender = reqSpender;
     }

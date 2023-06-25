@@ -1,12 +1,12 @@
 import { ConfigManagerV2 } from '../../services/config-manager-v2';
 import { AvailableNetworks } from '../../services/config-manager-types';
 
-export namespace DefiKingdomsV2Config {
+export namespace DfkCrystalvaleConfig {
   export interface NetworkConfig {
     allowedSlippage: string;
     gasLimitEstimate: number;
     ttl: number;
-    defikingdomsRouterAddress: (chain: string, network: string) => string;
+    routerAddress: (chain: string, network: string) => string;
     tradingTypes: Array<string>;
     chainType: string;
     availableNetworks: Array<AvailableNetworks>;
@@ -14,22 +14,18 @@ export namespace DefiKingdomsV2Config {
 
   export const config: NetworkConfig = {
     allowedSlippage: ConfigManagerV2.getInstance().get(
-      'defikingdomsv2.allowedSlippage'
+      'dfk_crystalvale.allowedSlippage'
     ),
     gasLimitEstimate: ConfigManagerV2.getInstance().get(
-      'defikingdomsv2.gasLimitEstimate'
+      'dfk_crystalvale.gasLimitEstimate'
     ),
-    ttl: ConfigManagerV2.getInstance().get('defikingdomsv2.ttl'),
-    defikingdomsRouterAddress: (chain: string, network: string) =>
+    ttl: ConfigManagerV2.getInstance().get('dfk_crystalvale.ttl'),
+    routerAddress: (chain: string, network: string) =>
       ConfigManagerV2.getInstance().get(
-        `defikingdomsv2.contractAddresses.${chain}.${network}.defikingdomsRouterAddress`
+        `dfk_crystalvale.contractAddresses.${chain}.${network}.routerAddress`
       ),
     tradingTypes: ['AMM'],
     chainType: 'EVM',
-    availableNetworks: [
-      { chain: 'dfkchain', networks: ['mainnet'] },
-      { chain: 'klaytn', networks: ['mainnet'] },
-      { chain: 'harmony', networks: ['mainnet'] },
-    ],
+    availableNetworks: [{ chain: 'dfkchain', networks: ['mainnet'] }],
   };
 }
