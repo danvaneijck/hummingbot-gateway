@@ -13,7 +13,7 @@ import {
   SwapParameters,
   Trade as DefiraTrade,
   Fetcher as DefiraFetcher,
-} from '../../../defira-sdk/defira-sdk/dist';
+} from 'defira-sdk';
 
 import { Percent, Token, CurrencyAmount, TradeType } from '@uniswap/sdk-core';
 import { BigNumber, Transaction, Wallet } from 'ethers';

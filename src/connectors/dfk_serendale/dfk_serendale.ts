@@ -10,7 +10,7 @@ import {
     SwapParameters,
     Trade as klaytnTrade,
     Fetcher as klaytnFetcher,
-} from '../../../dfk-connector-sdk/klaytn-sdk/dist';
+} from 'dfk-klaytn-sdk';
 
 import { Percent, Token, CurrencyAmount, TradeType } from '@uniswap/sdk-core';
 import { ExpectedTrade, Uniswapish } from '../../services/common-interfaces';

@@ -10,7 +10,7 @@ import {
     SwapParameters,
     Trade as dfkchainTrade,
     Fetcher as dfkchainFetcher,
-} from '../../../dfk-connector-sdk/dfkchain-sdk/dist';
+} from 'dfk-dfkchain-sdk';
 
 import { Percent, Token, CurrencyAmount, TradeType } from '@uniswap/sdk-core';
 
@@ -135,12 +135,14 @@ export class DfkCrystalvale implements Uniswapish {
      * @param allowedSlippageStr (Optional) should be of the form '1/10'.
      */
     public getAllowedSlippage(allowedSlippageStr?: string): Percent {
+        logger.info(`get allowed slippage ${allowedSlippageStr}`);
         if (allowedSlippageStr != null && isFractionString(allowedSlippageStr)) {
             const fractionSplit = allowedSlippageStr.split('/');
             return new Percent(fractionSplit[0], fractionSplit[1]);
         }
 
         const allowedSlippage = DfkCrystalvaleConfig.config.allowedSlippage;
+        logger.info(`getting config slippage: ${allowedSlippage}`);
         const nd = allowedSlippage.match(percentRegexp);
         if (nd) return new Percent(nd[1], nd[2]);
         throw new Error(
@@ -232,10 +234,12 @@ export class DfkCrystalvale implements Uniswapish {
             `${trades[0].executionPrice.invert().toFixed(6)} ` +
             `${baseToken.name}.`
         );
-
-        const expectedAmount = trades[0].maximumAmountIn(
-            this.getAllowedSlippage(allowedSlippage)
-        );
+        logger.info('computing slippage');
+        const configSlippage = this.getAllowedSlippage(allowedSlippage);
+        logger.info(`config slippage: ${configSlippage.toFixed(2)}`);
+        logger.info('getting max amount in');
+        const expectedAmount = trades[0].maximumAmountIn(configSlippage);
+        logger.info(`expectedAmount: ${expectedAmount}`);
         return { trade: trades[0], expectedAmount };
     }
 
