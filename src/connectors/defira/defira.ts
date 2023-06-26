@@ -13,7 +13,7 @@ import {
   SwapParameters,
   Trade as DefiraTrade,
   Fetcher as DefiraFetcher,
-} from '@zuzu-cat/defira-sdk';
+} from '../../../defira-sdk/defira-sdk/dist';
 
 import { Percent, Token, CurrencyAmount, TradeType } from '@uniswap/sdk-core';
 import { BigNumber, Transaction, Wallet } from 'ethers';
@@ -214,8 +214,8 @@ export class Defira implements Uniswapish {
     }
     logger.info(
       `Best trade for ${baseToken.address}-${quoteToken.address}: ` +
-        `${trades[0].executionPrice.toFixed(6)}` +
-        `${baseToken.name}.`
+      `${trades[0].executionPrice.toFixed(6)}` +
+      `${baseToken.name}.`
     );
     const expectedAmount = trades[0].minimumAmountOut(
       this.getAllowedSlippage(allowedSlippage)
@@ -258,8 +258,8 @@ export class Defira implements Uniswapish {
     }
     logger.info(
       `Best trade for ${quoteToken.address}-${baseToken.address}: ` +
-        `${trades[0].executionPrice.invert().toFixed(6)} ` +
-        `${baseToken.name}.`
+      `${trades[0].executionPrice.invert().toFixed(6)} ` +
+      `${baseToken.name}.`
     );
 
     const expectedAmount = trades[0].maximumAmountIn(

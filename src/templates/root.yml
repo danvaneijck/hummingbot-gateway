@@ -115,3 +115,19 @@ configurations:
   $namespace zigzag:
     configurationPath: zigzag.yml
     schemaPath: zigzag-schema.json
+
+  $namespace dfkchain:
+    configurationPath: dfkchain.yml
+    schemaPath: dfkchain-schema.json
+
+  $namespace klaytn:
+    configurationPath: klaytn.yml
+    schemaPath: klaytn-schema.json
+
+  $namespace dfk_crystalvale:
+    configurationPath: dfk_crystalvale.yml
+    schemaPath: dfk_crystalvale-schema.json
+
+  $namespace dfk_serendale:
+    configurationPath: dfk_serendale.yml
+    schemaPath: dfk_serendale-schema.json

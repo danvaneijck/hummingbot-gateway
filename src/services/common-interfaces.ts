@@ -85,7 +85,7 @@ import {
   TradeOptionsDeadline as VVSTradeOptionsDeadline,
   SwapParameters as VVSSwapParameters,
 } from 'vvs-sdk';
-import { Trade as DefiraTrade } from '@zuzu-cat/defira-sdk';
+import { Trade as DefiraTrade } from '../../defira-sdk/defira-sdk/dist';
 import {
   Token as PancakeSwapToken,
   CurrencyAmount as PancakeSwapCurrencyAmount,
@@ -115,6 +115,10 @@ import {
 } from '../clob/clob.requests';
 import { BalanceRequest } from '../network/network.requests';
 import { RouteMarket, ZigZagOrder } from '../connectors/zigzag/zigzag';
+
+import { Trade as DFkChainDfkTrade } from '../../dfk-connector-sdk/dfkchain-sdk/dist';
+
+import { Trade as KlaytnDfkTrade } from '../../dfk-connector-sdk/klaytn-sdk/dist';
 
 // TODO Check the possibility to have clob/solana/serum equivalents here
 //  Check this link https://hummingbot.org/developers/gateway/building-gateway-connectors/#5-add-sdk-classes-to-uniswapish-interface
@@ -154,7 +158,9 @@ export type UniswapishTrade =
   | PancakeSwapTrade
   | MMFTrade
   | VVSTrade
-  | TradeXsswap;
+  | TradeXsswap
+  | DFkChainDfkTrade<Currency, Currency, TradeType>
+  | KlaytnDfkTrade<Currency, Currency, TradeType>;
 
 export type UniswapishTradeOptions =
   | MMFTradeOptions

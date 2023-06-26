@@ -1,0 +1,7 @@
+allowedSlippage: '2/100'
+gasLimitEstimate: 150688
+ttl: 600
+contractAddresses:
+  klaytn:
+    mainnet:
+      routerAddress: '0x9e987E5E9aB872598f601BE4aCC5ac23F484845E'

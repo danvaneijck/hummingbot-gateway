@@ -1,0 +1,7 @@
+allowedSlippage: '2/100'
+gasLimitEstimate: 150688
+ttl: 600
+contractAddresses:
+  dfkchain:
+    mainnet:
+      routerAddress: '0x3C351E1afdd1b1BC44e931E12D4E05D6125eaeCa'

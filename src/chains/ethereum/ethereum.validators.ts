@@ -64,6 +64,8 @@ export const validateSpender: Validator = mkValidator(
       val === 'pancakeswap' ||
       val === 'xsswap' ||
       val === 'zigzag' ||
+      val === 'dfk_crystalvale' ||
+      val === 'dfk_serendale' ||
       isAddress(val))
 );
 

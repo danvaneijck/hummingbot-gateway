@@ -29,6 +29,8 @@ module.exports = {
     'src/connectors/quickswap/quickswap.ts',
     'src/connectors/sushiswap/sushiswap.ts',
     'src/connectors/traderjoe/traderjoe.ts',
+    'src/connectors/dfk_crystalvale/dfk_crystalvale.ts',
+    'src/connectors/dfk_serendale/dfk_serendale.ts',
     'src/network/network.controllers.ts',
     'src/services/ethereum-base.ts',
     'src/services/telemetry-transport.ts',
@@ -41,5 +43,10 @@ module.exports = {
   moduleNameMapper: {
     eccrypto: '<rootDir>/test/mock/eccrypto-mock.js',
   },
-  testPathIgnorePatterns: ['/node_modules/', 'test-helpers'],
+  testPathIgnorePatterns: [
+    '/node_modules/',
+    'test-helpers',
+    'dfk-connector-sdk',
+    'defira-sdk',
+  ],
 };

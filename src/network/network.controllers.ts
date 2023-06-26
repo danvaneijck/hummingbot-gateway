@@ -25,6 +25,8 @@ import {
   getInitializedChain,
   UnsupportedChainException,
 } from '../services/connection-manager';
+import { DfkChain } from '../chains/dfkchain/dfkchain';
+import { Klaytn } from '../chains/klaytn/klaytn';
 
 export async function getStatus(
   req: StatusRequest
@@ -100,6 +102,16 @@ export async function getStatus(
     const injectiveConnections = Injective.getConnectedInstances();
     connections = connections.concat(
       injectiveConnections ? Object.values(injectiveConnections) : []
+    );
+
+    const dfkchainConnections = DfkChain.getConnectedInstances();
+    connections = connections.concat(
+      dfkchainConnections ? Object.values(dfkchainConnections) : []
+    );
+
+    const klaytnConnections = Klaytn.getConnectedInstances();
+    connections = connections.concat(
+      klaytnConnections ? Object.values(klaytnConnections) : []
     );
   }
 

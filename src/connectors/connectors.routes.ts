@@ -21,6 +21,8 @@ import { ConnectorsResponse } from './connectors.request';
 import { DexalotCLOBConfig } from './dexalot/dexalot.clob.config';
 import { ZigZagConfig } from './zigzag/zigzag.config';
 import { TinymanConfig } from './tinyman/tinyman.config';
+import { DfkCrystalvaleConfig } from './dfk_crystalvale/dfk_crystalvale.config';
+import { DfkSerendaleConfig } from './dfk_serendale/dfk_serendale.config';
 
 export namespace ConnectorsRoutes {
   export const router = Router();
@@ -164,6 +166,18 @@ export namespace ConnectorsRoutes {
             trading_type: TinymanConfig.config.tradingTypes,
             chain_type: TinymanConfig.config.chainType,
             available_networks: TinymanConfig.config.availableNetworks,
+          },
+          {
+            name: 'dfk_crystalvale',
+            trading_type: DfkCrystalvaleConfig.config.tradingTypes,
+            chain_type: DfkCrystalvaleConfig.config.chainType,
+            available_networks: DfkCrystalvaleConfig.config.availableNetworks,
+          },
+          {
+            name: 'dfk_serendale',
+            trading_type: DfkSerendaleConfig.config.tradingTypes,
+            chain_type: DfkSerendaleConfig.config.chainType,
+            available_networks: DfkSerendaleConfig.config.availableNetworks,
           },
         ],
       });

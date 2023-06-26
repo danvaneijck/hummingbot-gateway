@@ -1,11 +1,11 @@
 jest.useFakeTimers();
 const { MockProvider } = require('mock-ethers-provider');
-import { FACTORY_ADDRESS } from '@zuzu-cat/defira-sdk';
+import { FACTORY_ADDRESS } from '../../../defira-sdk/defira-sdk/dist';
 import { Defira } from '../../../src/connectors/defira/defira';
 import { patch, unpatch } from '../../services/patch';
 import { UniswapishPriceError } from '../../../src/services/error-handler';
 import { Token, CurrencyAmount, TradeType, Percent } from '@uniswap/sdk-core';
-import { Trade, Pair, Route } from '@zuzu-cat/defira-sdk';
+import { Trade, Pair, Route } from '../../../defira-sdk/defira-sdk/dist';
 import { BigNumber } from 'ethers';
 import { Harmony } from '../../../src/chains/harmony/harmony';
 import { patchEVMNonceManager } from '../../evm.nonce.mock';
