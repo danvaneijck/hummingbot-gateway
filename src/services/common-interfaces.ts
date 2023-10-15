@@ -117,7 +117,6 @@ import { BalanceRequest } from '../network/network.requests';
 import { RouteMarket, ZigZagOrder } from '../connectors/zigzag/zigzag';
 
 import { Trade as DFkChainDfkTrade } from '../../dfk-connector-sdk/dfkchain-sdk/dist';
-
 import { Trade as KlaytnDfkTrade } from '../../dfk-connector-sdk/klaytn-sdk/dist';
 
 // TODO Check the possibility to have clob/solana/serum equivalents here
