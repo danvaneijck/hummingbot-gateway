@@ -9,6 +9,7 @@ import { DfkCrystalvale } from '../../connectors/dfk_crystalvale/dfk_crystalvale
 
 import { Ethereumish } from '../../services/common-interfaces';
 import { ConfigManagerV2 } from '../../services/config-manager-v2';
+import { EVMController } from '../ethereum/evm.controllers';
 
 export class DfkChain extends EthereumBase implements Ethereumish {
     private static _instances: { [name: string]: DfkChain };
@@ -16,6 +17,7 @@ export class DfkChain extends EthereumBase implements Ethereumish {
     private _gasPriceRefreshInterval: number | null;
     private _nativeTokenSymbol: string;
     private _chain: string;
+    public controller;
 
     private constructor(network: string) {
         const config = getDfkChainConfig('dfkchain', network);
@@ -41,6 +43,7 @@ export class DfkChain extends EthereumBase implements Ethereumish {
                 : null;
 
         this.updateGasPrice();
+        this.controller = EVMController;
     }
 
     public static getInstance(network: string): DfkChain {

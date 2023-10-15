@@ -207,8 +207,7 @@ export class Traderjoe implements Uniswapish {
       TradeV2.chooseBestTrade(<TradeV2[]>trades, true)
     );
     logger.info(
-      `Best trade for ${baseToken.address}-${
-        quoteToken.address
+      `Best trade for ${baseToken.address}-${quoteToken.address
       }: ${bestTrade.toLog()}`
     );
     const expectedAmount = bestTrade.minimumAmountOut(
@@ -258,8 +257,7 @@ export class Traderjoe implements Uniswapish {
       TradeV2.chooseBestTrade(<TradeV2[]>trades, false)
     );
     logger.info(
-      `Best trade for ${quoteToken.address}-${
-        baseToken.address
+      `Best trade for ${quoteToken.address}-${baseToken.address
       }: ${bestTrade.toLog()}`
     );
 
