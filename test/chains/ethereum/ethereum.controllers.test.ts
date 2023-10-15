@@ -1,17 +1,7 @@
 import { BigNumber } from 'ethers';
 import { Ethereum } from '../../../src/chains/ethereum/ethereum';
-import { patch, unpatch } from '../../services/patch';
+import { patch, unpatch } from '../../../test/services/patch';
 import { TokenInfo } from '../../../src/chains/ethereum/ethereum-base';
-import {
-  nonce,
-  nextNonce,
-  getTokenSymbolsToTokens,
-  allowances,
-  approve,
-  balances,
-  cancel,
-  willTxSucceed,
-} from '../../../src/chains/ethereum/ethereum.controllers';
 import {
   HttpException,
   LOAD_WALLET_ERROR_CODE,
@@ -20,6 +10,10 @@ import {
   TOKEN_NOT_SUPPORTED_ERROR_CODE,
 } from '../../../src/services/error-handler';
 import { patchEVMNonceManager } from '../../evm.nonce.mock';
+import {
+  EVMController,
+  willTxSucceed,
+} from '../../../src/chains/ethereum/evm.controllers';
 let eth: Ethereum;
 
 beforeAll(async () => {
@@ -42,21 +36,23 @@ afterAll(async () => {
   await eth.close();
 });
 
-const zeroAddress =
-  '0000000000000000000000000000000000000000000000000000000000000000'; // noqa: mock
+// const zeroAddress =
+//   '0000000000000000000000000000000000000000000000000000000000000000'; // noqa: mock
+
+const mockAddress = '0xFaA12FD102FE8623C9299c72B03E45107F2772B5'; // noqa: mock
 
 describe('nonce', () => {
   it('return a nonce for a wallet', async () => {
     patch(eth, 'getWallet', () => {
       return {
-        address: '0xFaA12FD102FE8623C9299c72B03E45107F2772B5',
+        address: mockAddress,
       };
     });
     patch(eth.nonceManager, 'getNonce', () => 2);
-    const n = await nonce(eth, {
+    const n = await EVMController.nonce(eth, {
       chain: 'ethereum',
       network: 'goerli',
-      address: zeroAddress,
+      address: mockAddress,
     });
     expect(n).toEqual({ nonce: 2 });
   });
@@ -64,14 +60,14 @@ describe('nonce', () => {
   it('return next nonce for a wallet', async () => {
     patch(eth, 'getWallet', () => {
       return {
-        address: '0xFaA12FD102FE8623C9299c72B03E45107F2772B5',
+        address: mockAddress,
       };
     });
     patch(eth.nonceManager, 'getNextNonce', () => 3);
-    const n = await nextNonce(eth, {
+    const n = await EVMController.nextNonce(eth, {
       chain: 'ethereum',
       network: 'goerli',
-      address: zeroAddress,
+      address: mockAddress,
     });
     expect(n).toEqual({ nonce: 3 });
   });
@@ -89,7 +85,9 @@ describe('getTokenSymbolsToTokens', () => {
     patch(eth, 'getTokenBySymbol', () => {
       return weth;
     });
-    expect(getTokenSymbolsToTokens(eth, ['WETH'])).toEqual({ WETH: weth });
+    expect(EVMController.getTokenSymbolsToTokens(eth, ['WETH'])).toEqual({
+      WETH: weth,
+    });
   });
 });
 
@@ -99,7 +97,7 @@ describe('allowances', () => {
   it('return allowances for an owner, spender and tokens', async () => {
     patch(eth, 'getWallet', () => {
       return {
-        address: '0xFaA12FD102FE8623C9299c72B03E45107F2772B5',
+        address: mockAddress,
       };
     });
 
@@ -118,10 +116,10 @@ describe('allowances', () => {
       };
     });
 
-    const result = await allowances(eth, {
+    const result = await EVMController.allowances(eth, {
       chain: 'ethereum',
       network: 'goerli',
-      address: zeroAddress,
+      address: mockAddress,
       spender: uniswap,
       tokenSymbols: ['WETH'],
     });
@@ -137,14 +135,14 @@ describe('approve', () => {
       return uniswap;
     });
     eth.getContract = jest.fn().mockReturnValue({
-      address: '0xFaA12FD102FE8623C9299c72B03E45107F2772B5',
+      address: mockAddress,
     });
 
     patch(eth, 'ready', () => true);
 
     patch(eth, 'getWallet', () => {
       return {
-        address: '0xFaA12FD102FE8623C9299c72B03E45107F2772B5',
+        address: mockAddress,
       };
     });
 
@@ -159,10 +157,10 @@ describe('approve', () => {
       };
     });
 
-    const result = await approve(eth, {
+    const result = await EVMController.approve(eth, {
       chain: 'ethereum',
       network: 'goerli',
-      address: zeroAddress,
+      address: mockAddress,
       spender: uniswap,
       token: 'WETH',
     });
@@ -180,10 +178,10 @@ describe('approve', () => {
     });
 
     await expect(
-      approve(eth, {
+      EVMController.approve(eth, {
         chain: 'ethereum',
         network: 'goerli',
-        address: zeroAddress,
+        address: mockAddress,
         spender: uniswap,
         token: 'WETH',
       })
@@ -203,7 +201,7 @@ describe('approve', () => {
 
     patch(eth, 'getWallet', () => {
       return {
-        address: '0xFaA12FD102FE8623C9299c72B03E45107F2772B5',
+        address: mockAddress,
       };
     });
 
@@ -212,10 +210,10 @@ describe('approve', () => {
     });
 
     await expect(
-      approve(eth, {
+      EVMController.approve(eth, {
         chain: 'ethereum',
         network: 'goerli',
-        address: zeroAddress,
+        address: mockAddress,
         spender: uniswap,
         token: 'WETH',
       })
@@ -237,10 +235,10 @@ describe('balances', () => {
     });
 
     await expect(
-      balances(eth, {
+      EVMController.balances(eth, {
         chain: 'ethereum',
         network: 'goerli',
-        address: zeroAddress,
+        address: mockAddress,
         tokenSymbols: ['WETH', 'DAI'],
       })
     ).rejects.toThrow(
@@ -261,11 +259,11 @@ describe('cancel', () => {
     });
 
     await expect(
-      cancel(eth, {
+      EVMController.cancel(eth, {
         chain: 'ethereum',
         network: 'goerli',
         nonce: 123,
-        address: zeroAddress,
+        address: mockAddress,
       })
     ).rejects.toThrow(
       new HttpException(

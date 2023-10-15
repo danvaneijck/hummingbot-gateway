@@ -72,10 +72,6 @@ configurations:
     configurationPath: openocean.yml
     schemaPath: openocean-schema.json
 
-  $namespace defikingdoms:
-    configurationPath: defikingdoms.yml
-    schemaPath: defikingdoms-schema.json
-
   $namespace cosmos:
     configurationPath: cosmos.yml
     schemaPath: cosmos-schema.json
@@ -131,3 +127,14 @@ configurations:
   $namespace dfk_serendale:
     configurationPath: dfk_serendale.yml
     schemaPath: dfk_serendale-schema.json
+  $namespace tezos:
+    configurationPath: tezos.yml
+    schemaPath: tezos-schema.json
+
+  $namespace plenty:
+    configurationPath: plenty.yml
+    schemaPath: plenty-schema.json
+
+  $namespace kujira:
+    configurationPath: kujira.yml
+    schemaPath: kujira-schema.json

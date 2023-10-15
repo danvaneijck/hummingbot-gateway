@@ -5,6 +5,7 @@ import { BinanceSmartChain } from '../chains/binance-smart-chain/binance-smart-c
 import { Harmony } from '../chains/harmony/harmony';
 import { Polygon } from '../chains/polygon/polygon';
 import { Xdc } from '../chains/xdc/xdc';
+import { Tezos } from '../chains/tezos/tezos';
 import { MadMeerkat } from '../connectors/mad_meerkat/mad_meerkat';
 import { Openocean } from '../connectors/openocean/openocean';
 import { Pangolin } from '../connectors/pangolin/pangolin';
@@ -17,7 +18,6 @@ import { VVSConnector } from '../connectors/vvs/vvs';
 import { InjectiveCLOB } from '../connectors/injective/injective';
 import { InjectiveClobPerp } from '../connectors/injective_perpetual/injective.perp';
 import { Injective } from '../chains/injective/injective';
-import { ZigZag } from '../connectors/zigzag/zigzag';
 import {
   CLOBish,
   Ethereumish,
@@ -27,10 +27,10 @@ import {
   Uniswapish,
   UniswapLPish,
   Xdcish,
+  Tezosish,
 } from './common-interfaces';
 import { Traderjoe } from '../connectors/traderjoe/traderjoe';
 import { Sushiswap } from '../connectors/sushiswap/sushiswap';
-import { Defikingdoms } from '../connectors/defikingdoms/defikingdoms';
 import { Defira } from '../connectors/defira/defira';
 import { Near } from '../chains/near/near';
 import { Ref } from '../connectors/ref/ref';
@@ -39,10 +39,13 @@ import { DexalotCLOB } from '../connectors/dexalot/dexalot';
 import { Algorand } from '../chains/algorand/algorand';
 import { Cosmos } from '../chains/cosmos/cosmos';
 import { Tinyman } from '../connectors/tinyman/tinyman';
-import { DfkChain } from '../chains/dfkchain/dfkchain';
-import { Klaytn } from '../chains/klaytn/klaytn';
+// import { DfkChain } from '../chains/dfkchain/dfkchain';
+// import { Klaytn } from '../chains/klaytn/klaytn';
 import { DfkCrystalvale } from '../connectors/dfk_crystalvale/dfk_crystalvale';
 import { DfkSerendale } from '../connectors/dfk_serendale/dfk_serendale';
+import { Plenty } from '../connectors/plenty/plenty';
+import { Kujira } from '../chains/kujira/kujira';
+import { KujiraCLOB } from '../connectors/kujira/kujira';
 
 export type ChainUnion =
   | Algorand
@@ -50,7 +53,9 @@ export type ChainUnion =
   | Ethereumish
   | Nearish
   | Injective
-  | Xdcish;
+  | Xdcish
+  | Tezosish
+  | Kujira;
 
 export type Chain<T> = T extends Algorand
   ? Algorand
@@ -64,6 +69,10 @@ export type Chain<T> = T extends Algorand
   ? Xdcish
   : T extends Injective
   ? Injective
+  : T extends Tezosish
+  ? Tezosish
+  : T extends KujiraCLOB
+  ? KujiraCLOB
   : never;
 
 export class UnsupportedChainException extends Error {
@@ -82,7 +91,7 @@ export async function getInitializedChain<T>(
   chain: string,
   network: string
 ): Promise<Chain<T>> {
-  const chainInstance = getChainInstance(chain, network);
+  const chainInstance = await getChainInstance(chain, network);
 
   if (chainInstance === undefined) {
     throw new UnsupportedChainException(`unsupported chain ${chain}`);
@@ -95,10 +104,10 @@ export async function getInitializedChain<T>(
   return chainInstance as Chain<T>;
 }
 
-export function getChainInstance(
+export async function getChainInstance(
   chain: string,
   network: string
-): ChainUnion | undefined {
+): Promise<ChainUnion | undefined> {
   let connection: ChainUnion | undefined;
 
   if (chain === 'algorand') {
@@ -123,10 +132,14 @@ export function getChainInstance(
     connection = Xdc.getInstance(network);
   } else if (chain === 'injective') {
     connection = Injective.getInstance(network);
-  } else if (chain === 'dfkchain') {
-    connection = DfkChain.getInstance(network);
-  } else if (chain === 'klaytn') {
-    connection = Klaytn.getInstance(network);
+    // } else if (chain === 'dfkchain') {
+    //   connection = DfkChain.getInstance(network);
+    // } else if (chain === 'klaytn') {
+    //   connection = Klaytn.getInstance(network);
+  } else if (chain === 'tezos') {
+    connection = Tezos.getInstance(network);
+  } else if (chain === 'kujira') {
+    connection = Kujira.getInstance(network);
   } else {
     connection = undefined;
   }
@@ -140,9 +153,10 @@ export type ConnectorUnion =
   | Perpish
   | RefAMMish
   | CLOBish
-  | ZigZag
   | InjectiveClobPerp
-  | Tinyman;
+  | Tinyman
+  | Plenty
+  | KujiraCLOB;
 
 export type Connector<T> = T extends Uniswapish
   ? Uniswapish
@@ -154,12 +168,14 @@ export type Connector<T> = T extends Uniswapish
   ? RefAMMish
   : T extends CLOBish
   ? CLOBish
-  : T extends ZigZag
-  ? ZigZag
   : T extends InjectiveClobPerp
   ? InjectiveClobPerp
   : T extends Tinyman
   ? Tinyman
+  : T extends Plenty
+  ? Plenty
+  : T extends KujiraCLOB
+  ? KujiraCLOB
   : never;
 
 export async function getConnector<T>(
@@ -190,8 +206,6 @@ export async function getConnector<T>(
     connectorInstance = Openocean.getInstance(chain, network);
   } else if (chain === 'avalanche' && connector === 'traderjoe') {
     connectorInstance = Traderjoe.getInstance(chain, network);
-  } else if (chain === 'harmony' && connector === 'defikingdoms') {
-    connectorInstance = Defikingdoms.getInstance(chain, network);
   } else if (chain === 'harmony' && connector === 'defira') {
     connectorInstance = Defira.getInstance(chain, network);
   } else if (chain === 'cronos' && connector === 'mad_meerkat') {
@@ -212,14 +226,16 @@ export async function getConnector<T>(
     connectorInstance = InjectiveCLOB.getInstance(chain, network);
   } else if (chain === 'avalanche' && connector === 'dexalot') {
     connectorInstance = DexalotCLOB.getInstance(network);
-  } else if (chain === 'ethereum' && connector === 'zigzag') {
-    connectorInstance = ZigZag.getInstance(network);
   } else if (chain == 'algorand' && connector == 'tinyman') {
     connectorInstance = Tinyman.getInstance(network);
   } else if (chain == 'klaytn' && connector == 'dfk_serendale') {
     connectorInstance = DfkSerendale.getInstance(chain, network);
   } else if (chain == 'dfkchain' && connector == 'dfk_crystalvale') {
     connectorInstance = DfkCrystalvale.getInstance(chain, network);
+  } else if (chain === 'tezos' && connector === 'plenty') {
+    connectorInstance = Plenty.getInstance(network);
+  } else if (chain === 'kujira' && connector === 'kujira') {
+    connectorInstance = KujiraCLOB.getInstance(chain, network);
   } else {
     throw new Error('unsupported chain or connector');
   }

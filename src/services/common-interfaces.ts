@@ -27,13 +27,6 @@ import {
   Fraction as UniswapFraction,
 } from '@uniswap/sdk-core';
 import {
-  Token as TokenDefikingdoms,
-  CurrencyAmount as CurrencyAmountDefikingdoms,
-  Trade as TradeDefikingdoms,
-  Fraction as DefikingdomsFraction,
-  // } from '@defikingdoms/sdk';
-} from '@switchboard-xyz/defikingdoms-sdk';
-import {
   Token as TokenPangolin,
   CurrencyAmount as CurrencyAmountPangolin,
   Trade as TradePangolin,
@@ -101,6 +94,7 @@ import {
 import { PerpPosition } from '../connectors/perp/perp';
 import { XdcBase } from '../chains/xdc/xdc.base';
 import { NearBase } from '../chains/near/near.base';
+import { TezosBase } from '../chains/tezos/tezos.base';
 import { Account, Contract as NearContract } from 'near-api-js';
 import { EstimateSwapView, TokenMetadata } from 'coinalpha-ref-sdk';
 import { FinalExecutionOutcome } from 'near-api-js/lib/providers';
@@ -114,7 +108,7 @@ import {
   ClobTickerRequest,
 } from '../clob/clob.requests';
 import { BalanceRequest } from '../network/network.requests';
-import { RouteMarket, ZigZagOrder } from '../connectors/zigzag/zigzag';
+import { TradeV2 } from '@traderjoe-xyz/sdk-v2';
 
 import { Trade as DFkChainDfkTrade } from '../../dfk-connector-sdk/dfkchain-sdk/dist';
 import { Trade as KlaytnDfkTrade } from '../../dfk-connector-sdk/klaytn-sdk/dist';
@@ -129,7 +123,6 @@ export type Tokenish =
   | TokenTraderjoe
   | UniswapCoreToken
   | SushiToken
-  | TokenDefikingdoms
   | PancakeSwapToken
   | MMFToken
   | VVSToken
@@ -150,16 +143,15 @@ export type UniswapishTrade =
   | TradeQuickswap
   | TradeTraderjoe
   | SushiswapTrade<SushiToken, SushiToken, SushiTradeType>
-  | UniswapV3Trade<Currency, UniswapCoreToken, TradeType>
   | TradeUniswap
-  | TradeDefikingdoms
   | DefiraTrade<UniswapCoreToken, UniswapCoreToken, TradeType>
   | PancakeSwapTrade
   | MMFTrade
   | VVSTrade
   | TradeXsswap
   | DFkChainDfkTrade<Currency, Currency, TradeType>
-  | KlaytnDfkTrade<Currency, Currency, TradeType>;
+  | KlaytnDfkTrade<Currency, Currency, TradeType>
+  | TradeV2;
 
 export type UniswapishTradeOptions =
   | MMFTradeOptions
@@ -176,7 +168,6 @@ export type UniswapishAmount =
   | UniswapCoreCurrencyAmount<Currency>
   | CurrencyAmountTraderjoe
   | SushiCurrencyAmount<SushiCurrency | SushiToken>
-  | CurrencyAmountDefikingdoms
   | PancakeSwapCurrencyAmount
   | CurrencyAmountMMF
   | CurrencyAmountVVS
@@ -188,7 +179,6 @@ export type Fractionish =
   | QuickswapFraction
   | TraderjoeFraction
   | SushiFraction
-  | DefikingdomsFraction
   | PancakeSwapFraction
   | FractionMMF
   | FractionVVS
@@ -311,34 +301,6 @@ export interface Uniswapish {
     maxFeePerGas?: BigNumber,
     maxPriorityFeePerGas?: BigNumber,
     allowedSlippage?: string
-  ): Promise<Transaction>;
-}
-
-export interface ZigZagTrade {
-  newSwapPrice: number;
-  bestSwapRoute: RouteMarket[];
-  newQuoteOrderArray: ZigZagOrder[];
-}
-
-export interface ZigZagish {
-  init(): Promise<void>;
-
-  ready(): boolean;
-
-  getTokenByAddress(address: string): Tokenish;
-
-  estimate(
-    sellToken: Tokenish,
-    buyToken: Tokenish,
-    buyAmount: BigNumber,
-    side: string
-  ): Promise<ZigZagTrade>;
-
-  executeTrade(
-    walletAddress: string,
-    trade: ZigZagTrade,
-    rawAmount: BigNumber,
-    is_buy: boolean
   ): Promise<Transaction>;
 }
 
@@ -679,13 +641,16 @@ export interface BasicChainMethods {
   chain: string;
 }
 
-export interface Ethereumish extends BasicChainMethods, EthereumBase {
+export interface Chain extends BasicChainMethods, EthereumBase {
+  controller: any;
   cancelTx(wallet: Wallet, nonce: number): Promise<Transaction>;
   getContract(
     tokenAddress: string,
     signerOrProvider?: Wallet | Provider
   ): Contract;
 }
+
+export type Ethereumish = Chain;
 
 export interface Xdcish extends BasicChainMethods, XdcBase {
   cancelTx(wallet: XdcWallet, nonce: number): Promise<XdcTransaction>;
@@ -755,6 +720,13 @@ export interface Cosmosish extends CosmosBase {
   chain: string;
 }
 
+export interface Tezosish extends TezosBase {
+  gasPrice: number;
+  gasLimitTransaction: number;
+  nativeTokenSymbol: string;
+  chain: string;
+}
+
 export interface NetworkSelectionRequest {
   chain: string; //the target chain (e.g. ethereum, avalanche, or harmony)
   network: string; // the target network of the chain (e.g. mainnet)
@@ -788,11 +760,12 @@ export interface CustomTransactionReceipt
 export interface CustomTransaction
   extends Omit<
     Transaction,
-    'maxPriorityFeePerGas' | 'maxFeePerGas' | 'gasLimit' | 'value'
+    'maxPriorityFeePerGas' | 'maxFeePerGas' | 'gasLimit' | 'value' | 'chainId'
   > {
   maxPriorityFeePerGas: string | null;
   maxFeePerGas: string | null;
   gasLimit: string | null;
+  chainId: number | string;
   value: string;
 }
 
